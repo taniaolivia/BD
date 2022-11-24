@@ -1,0 +1,78 @@
+fichier resultat du test : testMontantCommandesClient1.out
+Contenu de la base :
+Contenu de la table Client :
+=================================
+
+     IDCLI NOMCLI     PRENOMCLI      TELCLI MAILCLI            ADRCLI                                                                                 
+---------- ---------- ---------- ---------- ------------------ ------------                                                                           
+         1 MARTIN     Jean       ########## martin@example.org La Rochelle                                                                            
+         2 DUPONT     Jean       ########## dupont@example.org La Rochelle                                                                            
+         3 CAVIN      Pauline    ########## cavin@example.org  La Rochelle                                                                            
+
+Contenu de la table Commande:
+=================================
+
+     IDCOM      IDCLI DATECOM    DATERECEPP                                                                                                           
+---------- ---------- ---------- ----------                                                                                                           
+         1          1 01/05/2013 20/06/2013                                                                                                           
+         2          1 01/10/2013 20/12/2013                                                                                                           
+         3          2 01/09/2013 20/12/2013                                                                                                           
+         4          3 01/11/2013 20/12/2013                                                                                                           
+         5          3 01/07/2013 10/11/2013                                                                                                           
+
+Contenu de la table Ligne_Commande:
+=================================
+
+  IDLIGCOM      IDCOM      IDPRO     QTECOM   PRIXUNIT                                                                                                
+---------- ---------- ---------- ---------- ----------                                                                                                
+         1          1          1          1         14                                                                                                
+         2          1          1          1         12                                                                                                
+         3          1          1          1         12                                                                                                
+         4          1          2          1         10                                                                                                
+         5          2          2          1         11                                                                                                
+         6          3          2          2         13                                                                                                
+
+6 rows selected.
+
+Contenu de la table Produit:
+=================================
+
+     IDPRO NOMPRO                                             TYPEPRO                                                                                 
+---------- -------------------------------------------------- -------                                                                                 
+         1 POISSON                                            POISSON                                                                                 
+         2 PORC                                               VIANDE                                                                                  
+
+Contenu de la table Livraison:
+=================================
+
+no rows selected
+
+Contenu de la table Livreur:
+=================================
+
+no rows selected
+
+'Resultat de la requete:'
+SQL> @ montantCommandesClient1.sql ;
+SQL> -- ============================================================================
+SQL> -- Fichier  : montantCommandesClient1.sql
+SQL> -- Auteur	 : OLIVIA TANIA
+SQL> -- Date	 : 15 Novembre 2019
+SQL> -- Projet	 : surgeles
+SQL> -- Role	 : Calculer le montant de chaque commande du client de code 1
+SQL> -- ============================================================================
+SQL> 
+SQL> SELECT D.DATECOM, C.IDCLI, C.NOMCLI, C.PRENOMCLI, D.IDCOM, SUM(PRIXUNIT*QTECOM) AS MONTANT
+  2  FROM CLIENT C, LIGNE_COMMANDE L, COMMANDE D
+  3  WHERE D.IDCOM = L.IDCOM
+  4  AND C.IDCLI = D.IDCLI
+  5  AND C.IDCLI = 1
+  6  GROUP BY D.DATECOM, C.IDCLI, C.NOMCLI, C.PRENOMCLI, D.IDCOM;
+
+DATECOM         IDCLI NOMCLI     PRENOMCLI       IDCOM    MONTANT                                                                                     
+---------- ---------- ---------- ---------- ---------- ----------                                                                                     
+01/05/2013          1 MARTIN     Jean                1         48                                                                                     
+01/10/2013          1 MARTIN     Jean                2         11                                                                                     
+
+SQL> 
+SQL> SET echo OFF

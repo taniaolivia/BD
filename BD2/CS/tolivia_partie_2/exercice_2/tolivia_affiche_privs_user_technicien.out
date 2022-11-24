@@ -1,0 +1,38 @@
+SQL> 
+SQL> -- ============================================================================
+SQL> -- A completer
+SQL> -- ============================================================================
+SQL> 
+SQL> set linesize 200;
+SQL> set pagesize 200;
+SQL> column role format a20;
+SQL> column privilege format a30;
+SQL> column admin_option format a15;
+SQL> 
+SQL> SELECT  role, privilege, admin_option
+  2  FROM    ROLE_SYS_PRIVS
+  3  WHERE   upper(role) = 'tolivia_dtexier_technicien'
+  4  ORDER BY 3;
+
+aucune ligne sélectionnée
+
+SQL> 
+SQL> set linesize 200;
+SQL> set pagesize 200;
+SQL> column table_name format a25;
+SQL> column column_name format a15;
+SQL> column privilege format a15;
+SQL> 
+SQL> SELECT table_name, column_name, privilege, grantable
+  2  FROM   ROLE_TAB_PRIVS
+  3  WHERE   upper(role) = 'tolivia_dtexier_techinicien'
+  4  ORDER BY 3;
+
+aucune ligne sélectionnée
+
+SQL> 
+SQL> -- ============================================================================
+SQL> -- Fin à completer
+SQL> -- ============================================================================
+SQL> 
+SQL> set echo off

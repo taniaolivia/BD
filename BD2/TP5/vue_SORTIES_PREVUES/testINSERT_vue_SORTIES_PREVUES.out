@@ -1,0 +1,154 @@
+SQL> --=============================================================================
+SQL> -- Etat de la base avant insertion
+SQL> --=============================================================================
+SQL> set echo off
+Contenu de la table Bateau Passage :
+=================================
+
+no rows selected
+
+Contenu de la table Bateau Resident:
+=================================
+
+ ID_BATRES CODPORT    NOMBAT         ID_MOD   EMPL_AFF    ID_PROP                                                                                     
+---------- ---------- ---------- ---------- ---------- ----------                                                                                     
+         1 AA         LONY                1          1          1                                                                                     
+
+Contenu de la table Emplacement:
+=================================
+
+   ID_EMPL BASSIN     P     EMPLNO  TYPE_EMPL                                                                                                         
+---------- ---------- - ---------- ----------                                                                                                         
+         1 Gorgey     G          1          1                                                                                                         
+
+Contenu de la table Emplacement Libre:
+=================================
+
+   ID_EMPL DEB_LIBRE  FIN_LIBRE   TYPE_EMPL                                                                                                           
+---------- ---------- ---------- ----------                                                                                                           
+         1 10/01/2019 25/01/2019          1                                                                                                           
+
+Contenu de la table Modele:
+=================================
+
+    ID_MOD CODMOD     CONSTRUCT       LONGR       LARG     TIRANT                                                                                     
+---------- ---------- ---------- ---------- ---------- ----------                                                                                     
+         1 FFFFF      Jontare         14.33      16.43       9.77                                                                                     
+
+Contenu de la table Port:
+=================================
+
+CODPORT    VILLE            CODPOSTAL                                                                                                                 
+---------- --------------- ----------                                                                                                                 
+AA         LA ROCHELLE          17000                                                                                                                 
+
+Contenu de la table Proprietaire:
+=================================
+
+   ID_PROP NOMPROP    ADRESSE            VILLE            CODPOSTAL TEL_PORTABLE                                                                      
+---------- ---------- ------------------ --------------- ---------- ---------------                                                                   
+         1 Jean       24 RUE DE NERVEGE  LA ROCHELLE          17000 713452312                                                                         
+
+Contenu de la table Sortie:
+=================================
+
+no rows selected
+
+Contenu de la table Type Emplacemment:
+=================================
+
+ TYPE_EMPL      LONGR       LARG    PROFOND                                                                                                           
+---------- ---------- ---------- ----------                                                                                                           
+         1      20.33      12.43      12.32                                                                                                           
+
+SQL> -- ============================================================================
+SQL> --  Tester l'insertion d'un nuplet dans la vue vue_SORTIES_PREVUES
+SQL> -- ============================================================================
+SQL> -- Contenu de la vue avant insertion
+SQL> select CODPORT, NOMBAT, DATSORTPREV, DATRETPREV
+  2  from   vue_SORTIES_PREVUES;
+
+no rows selected
+
+SQL> 
+SQL> -- Insertion d'un nuplet dans la vue vue_SORTIES_PREVUES
+SQL> insert into  vue_SORTIES_PREVUES(CODPORT, NOMBAT, DATSORTPREV, DATRETPREV)
+  2  VALUES  ('BB', 'POLIANE',	TO_DATE('20/12/2018', 'DD/MM/YYYY'),  TO_DATE('20/01/2019', 'DD/MM/YYYY'));
+insert into  vue_SORTIES_PREVUES(CODPORT, NOMBAT, DATSORTPREV, DATRETPREV)
+*
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("TOLIVIA"."SORTIE"."ID_SORTIE") 
+
+
+SQL> 
+SQL> -- Contenu de la vue apres insertion
+SQL> select CODPORT, NOMBAT, DATSORTPREV, DATRETPREV
+  2  from   vue_SORTIES_PREVUES;
+
+no rows selected
+
+SQL> 
+SQL> set echo off
+SQL> --=============================================================================
+SQL> -- Etat de la base apres insertion
+SQL> --=============================================================================
+SQL> set echo off
+Contenu de la table Bateau Passage :
+=================================
+
+no rows selected
+
+Contenu de la table Bateau Resident:
+=================================
+
+ ID_BATRES CODPORT    NOMBAT         ID_MOD   EMPL_AFF    ID_PROP                                                                                     
+---------- ---------- ---------- ---------- ---------- ----------                                                                                     
+         1 AA         LONY                1          1          1                                                                                     
+
+Contenu de la table Emplacement:
+=================================
+
+   ID_EMPL BASSIN     P     EMPLNO  TYPE_EMPL                                                                                                         
+---------- ---------- - ---------- ----------                                                                                                         
+         1 Gorgey     G          1          1                                                                                                         
+
+Contenu de la table Emplacement Libre:
+=================================
+
+   ID_EMPL DEB_LIBRE  FIN_LIBRE   TYPE_EMPL                                                                                                           
+---------- ---------- ---------- ----------                                                                                                           
+         1 10/01/2019 25/01/2019          1                                                                                                           
+
+Contenu de la table Modele:
+=================================
+
+    ID_MOD CODMOD     CONSTRUCT       LONGR       LARG     TIRANT                                                                                     
+---------- ---------- ---------- ---------- ---------- ----------                                                                                     
+         1 FFFFF      Jontare         14.33      16.43       9.77                                                                                     
+
+Contenu de la table Port:
+=================================
+
+CODPORT    VILLE            CODPOSTAL                                                                                                                 
+---------- --------------- ----------                                                                                                                 
+AA         LA ROCHELLE          17000                                                                                                                 
+
+Contenu de la table Proprietaire:
+=================================
+
+   ID_PROP NOMPROP    ADRESSE            VILLE            CODPOSTAL TEL_PORTABLE                                                                      
+---------- ---------- ------------------ --------------- ---------- ---------------                                                                   
+         1 Jean       24 RUE DE NERVEGE  LA ROCHELLE          17000 713452312                                                                         
+
+Contenu de la table Sortie:
+=================================
+
+no rows selected
+
+Contenu de la table Type Emplacemment:
+=================================
+
+ TYPE_EMPL      LONGR       LARG    PROFOND                                                                                                           
+---------- ---------- ---------- ----------                                                                                                           
+         1      20.33      12.43      12.32                                                                                                           
+

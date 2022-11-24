@@ -1,0 +1,69 @@
+fichier resultat du test : nbrRuchesApiculteur/testNbrRuchesApiculteur.out
+Contenu de la base :
+Contenu de la table Apiculteur :
+=================================
+
+     IDAPI NOMAPI     PRENOMAPI  TELAPI          MAILAPI              ADRAPI                                                      
+---------- ---------- ---------- --------------- -------------------- ------------                                                
+         1 DUPONT     Jean       0606060606      dupont@example.org   La Rochelle                                                 
+         2 VANILLE    Charles    0607070707      vanille@example.org  La Rochelle                                                 
+         3 LALLIC     Tituan     0707070707      lallic@example.org   La Rochelle                                                 
+
+Contenu de la table Rucher:
+=================================
+
+  IDRUCHER TYPEMIEL                                                                                                               
+---------- ------------------                                                                                                     
+         1 acacia                                                                                                                 
+         2 colza                                                                                                                  
+         3 sapin                                                                                                                  
+         4 thym                                                                                                                   
+
+Contenu de la table Ruche:
+=================================
+
+      IDRU    NBCADRE      IDAPI   IDRUCHER                                                                                       
+---------- ---------- ---------- ----------                                                                                       
+         1          1          1          1                                                                                       
+         2         10          2          2                                                                                       
+         3         11          3          1                                                                                       
+         4         15          3          3                                                                                       
+         5          5          3          4                                                                                       
+
+Contenu de la table Recolte:
+=================================
+
+      IDRU DATEREC         MASSE                                                                                                  
+---------- ---------- ----------                                                                                                  
+         1 01/12/2018          5                                                                                                  
+         2 23/03/2018          4                                                                                                  
+         2 10/06/2018          9                                                                                                  
+         3 01/12/2018          9                                                                                                  
+         4 25/05/2018          6                                                                                                  
+         5 02/04/2018          8                                                                                                  
+
+6 lignes sélectionnées.
+
+'Resultat de la requete avec une sous-requete'
+SQL> @nbrRuchesApiculteur/nbrRuchesApiculteur.sql
+SQL> -- ============================================================================
+SQL> -- Fichier 	 : nbrRuchesApiculteur.sql
+SQL> -- Auteur		 : Tania OLIVIA
+SQL> -- Date		 : 13 Janvier 2020
+SQL> -- Base			     : Surgeles
+SQL> -- Role		 : Quel est le nombre de ruches par apiculteur ?
+SQL> -- ============================================================================
+SQL> 
+SQL> SELECT A.IDAPI, A.NOMAPI, A.PRENOMAPI, COUNT(R.IDRU) AS NbrRuches
+  2  FROM APICULTEUR A, RUCHE R
+  3  WHERE A.IDAPI = R.IDAPI
+  4  GROUP BY A.IDAPI, A.NOMAPI, A.PRENOMAPI
+  5  ORDER BY 1;
+
+     IDAPI NOMAPI     PRENOMAPI   NBRRUCHES                                                                                       
+---------- ---------- ---------- ----------                                                                                       
+         1 DUPONT     Jean                1                                                                                       
+         2 VANILLE    Charles             1                                                                                       
+         3 LALLIC     Tituan              3                                                                                       
+
+SQL> SET echo OFF

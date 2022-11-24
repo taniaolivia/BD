@@ -1,0 +1,89 @@
+fichier resultat du test : testProduitClientsLR.out
+Contenu de la base :
+Contenu de la table Client :
+=================================
+
+     IDCLI NOMCLI     PRENOMCLI      TELCLI MAILCLI            ADRCLI                                                                                 
+---------- ---------- ---------- ---------- ------------------ ------------                                                                           
+         1 MARTIN     Jean       ########## martin@example.org La Rochelle                                                                            
+         2 DUPONT     Jean       ########## dupont@example.org La Rochelle                                                                            
+         3 CAVIN      Pauline    ########## cavin@example.org  Saintes                                                                                
+         4 DURAND     Paul       ########## durand@example.org Niort                                                                                  
+
+Contenu de la table Commande:
+=================================
+
+     IDCOM      IDCLI DATECOM    DATERECEPP                                                                                                           
+---------- ---------- ---------- ----------                                                                                                           
+        10          1 01/10/2013 20/10/2013                                                                                                           
+        20          2 02/10/2013 20/10/2013                                                                                                           
+        11          1 01/10/2013 20/10/2013                                                                                                           
+        21          2 02/10/2013 20/10/2013                                                                                                           
+        30          3 03/10/2013 20/10/2013                                                                                                           
+        12          1 01/10/2013 20/10/2013                                                                                                           
+        40          4 01/10/2013 20/10/2013                                                                                                           
+
+7 lignes sélectionnées.
+
+Contenu de la table Ligne_Commande:
+=================================
+
+  IDLIGCOM      IDCOM      IDPRO     QTECOM   PRIXUNIT                                                                                                
+---------- ---------- ---------- ---------- ----------                                                                                                
+       100         10          1          5          3                                                                                                
+       200         20          1          2          4                                                                                                
+       300         11          2          5          3                                                                                                
+       400         21          2          2          4                                                                                                
+       500         30          2          3          6                                                                                                
+       600         12          3          3          6                                                                                                
+       700         40          4          2          6                                                                                                
+
+7 lignes sélectionnées.
+
+Contenu de la table Produit:
+=================================
+
+     IDPRO NOMPRO     TYPEPRO                                                                                                                         
+---------- ---------- ---------------------                                                                                                           
+         1 a          DESSERT                                                                                                                         
+         2 b          DESSERT                                                                                                                         
+         3 c          DESSERT                                                                                                                         
+         4 d          POISSON                                                                                                                         
+
+Contenu de la table Livraison:
+=================================
+
+aucune ligne sélectionnée
+
+Contenu de la table Livreur:
+=================================
+
+aucune ligne sélectionnée
+
+'Resultat de la requete'
+SQL> @produitClientsLR.sql
+SQL> -- ============================================================================
+SQL> -- Fichier 	 : produitClientsLR.sql
+SQL> -- Auteur		 : C. Faucher
+SQL> -- Date		 : Novembre 2014
+SQL> -- Base		 : Surgeles
+SQL> -- Role		 : Quels sont les produits commandés par tous les clients habitant à La Rochelle ?
+SQL> -- ============================================================================
+SQL> 
+SQL> SELECT DISTINCT P.IDPRO
+  2  FROM PRODUIT P
+  3  WHERE NOT EXISTS (SELECT *
+  4  		      FROM CLIENT C
+  5  		      WHERE C.ADRCLI = 'La Rochelle'
+  6  		      AND NOT EXISTS (SELECT *
+  7  				      FROM LIGNE_COMMANDE B, COMMANDE D
+  8  				      WHERE C.IDCLI = D.IDCLI
+  9  				      AND B.IDPRO = P.IDPRO
+ 10  				      AND B.IDCOM = D.IDCOM));
+
+     IDPRO                                                                                                                                            
+----------                                                                                                                                            
+         1                                                                                                                                            
+         2                                                                                                                                            
+
+SQL> SET echo OFF

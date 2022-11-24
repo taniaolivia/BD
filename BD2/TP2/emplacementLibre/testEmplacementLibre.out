@@ -1,0 +1,152 @@
+fichier resultat du test : testEmplacementLibre.out
+Contenu de la base :
+Contenu de la table Bateau Passage :
+=================================
+
+ID_BATPASS CODPORT    NOMBAT     ARV        DEPART         ID_MOD NOMPROP    TEL_PORTABLE    ADRESSE              EMPL_AFF                            
+---------- ---------- ---------- ---------- ---------- ---------- ---------- --------------- ------------------ ----------                            
+         1 AA         HIONY      20/01/2019 25/01/2019          1 Jean       713452311       27 RUE DU CORDOUAN          2                            
+         2 CC         KIONY      25/12/2018 30/12/2018          3 Ongy       712586422       28 RUE DU CORDOUAN          2                            
+         3 FF         QONY       17/01/2019 20/01/2019          2 Ongy       712586422       28 RUE DU CORDOUAN          7                            
+         4 GG         UONY       10/01/2019 15/01/2019          2 Ongy       712586422       28 RUE DU CORDOUAN          8                            
+
+Contenu de la table Bateau Resident:
+=================================
+
+ ID_BATRES CODPORT    NOMBAT         ID_MOD   EMPL_AFF    ID_PROP                                                                                     
+---------- ---------- ---------- ---------- ---------- ----------                                                                                     
+         1 BB         KONY                2          3          1                                                                                     
+         2 CC         HIONY               3          4          2                                                                                     
+         3 DD         MONY                3          5          1                                                                                     
+         4 EE         BONBON              3          6          2                                                                                     
+         5 FF         BON                 2          7          1                                                                                     
+
+Contenu de la table Emplacement:
+=================================
+
+   ID_EMPL BASSIN     P     EMPLNO  TYPE_EMPL                                                                                                         
+---------- ---------- - ---------- ----------                                                                                                         
+         1 Jenni      J          1          1                                                                                                         
+         2 Gorgey     G          2          2                                                                                                         
+         3 Jack       J          3          3                                                                                                         
+         4 Jack       K          4          4                                                                                                         
+         5 Kessy      Y          5          3                                                                                                         
+         6 Jessy      D          6          4                                                                                                         
+         7 Joy        F          7          4                                                                                                         
+         8 Ko         Q          8          2                                                                                                         
+
+8 rows selected.
+
+Contenu de la table Emplacement Libre:
+=================================
+
+   ID_EMPL DEB_LIBRE  FIN_LIBRE   TYPE_EMPL                                                                                                           
+---------- ---------- ---------- ----------                                                                                                           
+         1 10/01/2019 15/01/2019          1                                                                                                           
+         2 01/01/2019 15/01/2019          2                                                                                                           
+         3 01/01/2019 15/01/2019          3                                                                                                           
+         4 01/01/2019 15/01/2019          4                                                                                                           
+         5 06/01/2019 27/01/2019          3                                                                                                           
+         6 01/01/2019 15/01/2019          4                                                                                                           
+         7 16/01/2019 25/01/2019          4                                                                                                           
+         8 16/01/2019 25/01/2019          2                                                                                                           
+
+8 rows selected.
+
+Contenu de la table Modele:
+=================================
+
+    ID_MOD CODMOD     CONSTRUCT       LONGR       LARG     TIRANT                                                                                     
+---------- ---------- ---------- ---------- ---------- ----------                                                                                     
+         1 FFFFF      Jontare         20.33      12.43      45.77                                                                                     
+         2 HHHHH      Benny           49.33      45.43      12.77                                                                                     
+         3 JJJJ       Benny           49.33      45.43      12.77                                                                                     
+
+Contenu de la table Port:
+=================================
+
+CODPORT    VILLE            CODPOSTAL                                                                                                                 
+---------- --------------- ----------                                                                                                                 
+AA         LA ROCHELLE          17000                                                                                                                 
+BB         LA ROCHELLE          17000                                                                                                                 
+CC         LA ROCHELLE          17000                                                                                                                 
+DD         PARIS                16502                                                                                                                 
+EE         LILLE                16502                                                                                                                 
+FF         LILLE                16502                                                                                                                 
+GG         LILLE                16502                                                                                                                 
+
+7 rows selected.
+
+Contenu de la table Proprietaire:
+=================================
+
+   ID_PROP NOMPROP    ADRESSE            VILLE            CODPOSTAL TEL_PORTABLE                                                                      
+---------- ---------- ------------------ --------------- ---------- ---------------                                                                   
+         1 Jenue      24 RUE DE NERVEGE  LA ROCHELLE          17000 713452312                                                                         
+         2 Ongy       28 RUE DU CORDOUAN LA ROCHELLE          17000 712586422                                                                         
+
+Contenu de la table Sortie:
+=================================
+
+ ID_SORTIE CODPORT    NOMBAT     DATSORT    DATRET     EFF                                                                                            
+---------- ---------- ---------- ---------- ---------- ---                                                                                            
+         1 BB         KONY       20/12/2018 19/01/2019 EFF                                                                                            
+         2 CC         HIONY      31/12/2018 18/01/2019 EFF                                                                                            
+         4 EE         BONBON     12/12/2018 29/12/2018 EFF                                                                                            
+         5 FF         BON        09/01/2019 20/01/2019 EFF                                                                                            
+
+Contenu de la table Type Emplacemment:
+=================================
+
+ TYPE_EMPL      LONGR       LARG    PROFOND                                                                                                           
+---------- ---------- ---------- ----------                                                                                                           
+         1      49.33      45.43      54.32                                                                                                           
+         2      20.33      12.43      12.32                                                                                                           
+         3      49.33      45.43      54.32                                                                                                           
+         4      49.33      45.43      54.32                                                                                                           
+
+'Resultat de la requete:'
+SQL> @emplacementLibre.sql ;
+SQL> -- ============================================================================
+SQL> -- Fichier 	 : emplacementLibre.sql
+SQL> -- Auteur		 : Tania OLIVIA
+SQL> -- Date		 : 04/02/2020
+SQL> -- Base			     : port plaisance
+SQL> -- Role		 : La requête pour connaître la liste des emplacements libres durant une période donnée
+SQL> -- ============================================================================
+SQL> 
+SQL> SELECT E.ID_EMPL
+  2  FROM EMPLACEMENT_LIBRE E
+  3  WHERE NOT EXISTS (SELECT *
+  4  		       FROM BATEAU_RESIDENT BR
+  5  		       WHERE BR.EMPL_AFF = E.ID_EMPL)
+  6  AND NOT EXISTS (SELECT *
+  7  		     FROM BATEAU_PASSAGE BP
+  8  		     WHERE BP.EMPL_AFF = E.ID_EMPL
+  9  		     AND BP.ARV <= TO_DATE ('15/01/2019', 'DD/MM/YYYY')
+ 10  		     AND BP.DEPART >= TO_DATE ('01/01/2019', 'DD/MM/YYYY'))
+ 11  UNION
+ 12  SELECT E.ID_EMPL
+ 13  FROM EMPLACEMENT_LIBRE E
+ 14  WHERE EXISTS (SELECT *
+ 15  		   FROM BATEAU_RESIDENT BR, SORTIE S
+ 16  		   WHERE BR.CODPORT = S.CODPORT
+ 17  		   AND BR.NOMBAT = S.NOMBAT
+ 18  		   AND BR.EMPL_AFF = E.ID_EMPL
+ 19  		   AND S.DATSORT <= TO_DATE ('01/01/2019', 'DD/MM/YY')
+ 20  		   AND S.DATRET >= TO_DATE ('15/01/2019', 'DD/MM/YYYY'))
+ 21  AND NOT EXISTS (SELECT *
+ 22  		     FROM BATEAU_PASSAGE BP
+ 23  		     WHERE BP.EMPL_AFF = E.ID_EMPL
+ 24  		     AND BP.ARV <= TO_DATE ('15/01/2019', 'DD/MM/YYYY')
+ 25  		     AND BP.DEPART >= TO_DATE ('01/01/2019', 'DD/MM/YYYY')
+ 26  );
+
+   ID_EMPL                                                                                                                                            
+----------                                                                                                                                            
+         1                                                                                                                                            
+         2                                                                                                                                            
+         3                                                                                                                                            
+         4                                                                                                                                            
+
+SQL> SET echo OFF

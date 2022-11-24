@@ -1,0 +1,56 @@
+SQL> 
+SQL> -- ============================================================================
+SQL> -- A completer
+SQL> -- ============================================================================
+SQL> 
+SQL> -- ==================
+SQL> -- Privileges SYSTEM
+SQL> -- ==================
+SQL> -- Attribution du droit de se connecter à la BD
+SQL> GRANT CREATE SESSION TO tolivia_dtexier;
+
+Autorisation de privilèges (GRANT) acceptée.
+
+SQL> 
+SQL> -- ==================
+SQL> -- Privileges OBJETS
+SQL> -- ==================
+SQL> -- Affecter les installations
+SQL> GRANT SELECT , INSERT, UPDATE
+  2  ON technicien TO tolivia_dtexier;
+
+Autorisation de privilèges (GRANT) acceptée.
+
+SQL> 
+SQL> GRANT SELECT, INSERT, UPDATE
+  2  ON logiciel TO tolivia_dtexier;
+
+Autorisation de privilèges (GRANT) acceptée.
+
+SQL> 
+SQL> GRANT SELECT, INSERT, UPDATE
+  2  ON tolivia_installation TO tolivia_dtexier;
+
+Autorisation de privilèges (GRANT) acceptée.
+
+SQL> 
+SQL> GRANT EXECUTE
+  2  ON listeInstallationAffecte TO tolivia_dtexier;
+
+Autorisation de privilèges (GRANT) acceptée.
+
+SQL> 
+SQL> GRANT SELECT, INSERT, UPDATE
+  2  ON  poste TO tolivia_dtexier;
+
+Autorisation de privilèges (GRANT) acceptée.
+
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> -- ============================================================================
+SQL> -- Fin à completer
+SQL> -- ============================================================================
+SQL> 
+SQL> set echo off

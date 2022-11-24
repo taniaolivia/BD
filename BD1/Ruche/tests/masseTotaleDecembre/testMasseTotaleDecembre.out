@@ -1,0 +1,79 @@
+fichier resultat du test : masseTotaleDecembre/testMasseTotaleDecembre.out
+Contenu de la base :
+Contenu de la table Apiculteur :
+=================================
+
+     IDAPI NOMAPI     PRENOMAPI  TELAPI          MAILAPI              ADRAPI                                                      
+---------- ---------- ---------- --------------- -------------------- ------------                                                
+         1 DUPONT     Jean       0606060606      dupont@example.org   La Rochelle                                                 
+         2 VANILLE    Charles    0607070707      vanille@example.org  La Rochelle                                                 
+         3 LALLIC     Tituan     0707070707      lallic@example.org   La Rochelle                                                 
+
+Contenu de la table Rucher:
+=================================
+
+  IDRUCHER TYPEMIEL                                                                                                               
+---------- ------------------                                                                                                     
+         1 acacia                                                                                                                 
+         2 colza                                                                                                                  
+         3 sapin                                                                                                                  
+         4 thym                                                                                                                   
+
+Contenu de la table Ruche:
+=================================
+
+      IDRU    NBCADRE      IDAPI   IDRUCHER                                                                                       
+---------- ---------- ---------- ----------                                                                                       
+         1          1          1          1                                                                                       
+         2         10          2          2                                                                                       
+         3         11          3          1                                                                                       
+         4         15          3          3                                                                                       
+         5          5          3          4                                                                                       
+
+Contenu de la table Recolte:
+=================================
+
+      IDRU DATEREC         MASSE                                                                                                  
+---------- ---------- ----------                                                                                                  
+         1 01/12/2018          5                                                                                                  
+         2 23/03/2018          4                                                                                                  
+         2 10/06/2018          9                                                                                                  
+         3 01/12/2018          9                                                                                                  
+         4 25/05/2018          6                                                                                                  
+         5 02/04/2018          8                                                                                                  
+
+6 lignes sélectionnées.
+
+'Resultat de la requete'
+SQL> @masseTotaleDecembre/masseTotaleDecembre.sql
+SQL> -- ============================================================================
+SQL> -- Fichier 	 : masseTotaleDecembre.sql
+SQL> -- Auteur		 : Tania OLIVIA
+SQL> -- Date		 : 13 Janvier 2020
+SQL> -- Base			     : Ruche
+SQL> -- Role		 : Quelle est la masse de miel récolté par apiculteur le 1er décembre 2018 ? Et le résultat l'ensemble des apiculteurs même ceux qui n’ont pas fait de récolte ce jour-là (MasseTotale=0).
+SQL> -- ============================================================================
+SQL> 
+SQL> SELECT A.IDAPI, SUM(RE.MASSE) AS MasseTotale
+  2  FROM APICULTEUR A, RUCHE R, RECOLTE RE
+  3  WHERE R.IDRU = RE.IDRU
+  4  AND A.IDAPI = R.IDAPI
+  5  AND RE.DATEREC = TO_DATE('01/12/2018', 'DD/MM/YYYY')
+  6  GROUP BY A.IDAPI
+  7  UNION
+  8  SELECT A1.IDAPI, 0
+  9  FROM APICULTEUR A1
+ 10  WHERE NOT EXISTS (SELECT A2.IDAPI
+ 11  		       FROM APICULTEUR A2, RUCHE R, RECOLTE RE
+ 12  		       WHERE A2.IDAPI = R.IDAPI
+ 13  		       AND R.IDRU = RE.IDRU
+ 14  		       AND RE.DATEREC = TO_DATE('01/12/2018', 'DD/MM/YYYY')
+ 15  		       AND A1.IDAPI = A2.IDAPI);
+
+     IDAPI MASSETOTALE                                                                                                            
+---------- -----------                                                                                                            
+         1           5                                                                                                            
+         2           0                                                                                                            
+         3           9                                                                                                            
+
+SQL> SET echo OFF

@@ -1,0 +1,43 @@
+-- ============================================================================
+-- Fichier          : modeleInsertBaseBilletterie.sql
+-- Auteur           : Brouillé Théo
+-- Date             : Janvier 2019
+-- Base				: Billetterie
+-- Role             : Modèle d'insertion pour chacune des relations
+-- ============================================================================
+
+-- Une salle
+INSERT INTO SALLE(IDSALLE, NOMSALLE, ADRSALLE)
+VALUES(1, 'La Sirène', 'LR');
+
+-- Un site de réservation
+INSERT INTO SITERESA(IDSITERESA, NOMSITERESA, URLSITERESA)
+VALUES(1, 'digitick', 'www.digitick.com');
+
+-- Un client
+INSERT INTO CLIENT(IDCLI, NOMCLI, PRENOMCLI, TELCLI, MAILCLI, ADRCLI)
+VALUES(1, 'MARTIN', 'Jean', '0505050505', 'jean.martin@example.org', 'LR');
+
+-- Un tarif
+INSERT INTO TARIF(IDTARIF, PRIX, TYPETARIF)
+VALUES(1,10.00,'etudiant');
+
+-- Un événement
+INSERT INTO SALLE(IDSALLE, NOMSALLE, ADRSALLE)
+VALUES(1, 'La Sirène', 'LR');
+INSERT INTO EVENEMENT(IDEVT, TITREEVT, DATEEVT, TYPEEVT, IDSALLE)
+VALUES();
+
+-- Un billet
+INSERT INTO SALLE(IDSALLE, NOMSALLE, ADRSALLE)
+VALUES(1, 'La Sirène', 'LR');
+INSERT INTO EVENEMENT(IDEVT, TITREEVT, DATEEVT, TYPEEVT, IDSALLE)
+VALUES(1, 'TestEvt', sysdate, 'concert',1);
+INSERT INTO CLIENT(IDCLI, NOMCLI, PRENOMCLI, TELCLI, MAILCLI, ADRCLI)
+VALUES(1, 'MARTIN', 'Jean', '0505050505', 'jean.martin@example.org', 'LR');
+INSERT INTO TARIF(IDTARIF, PRIX, TYPETARIF)
+VALUES(1,10.00,'etudiant');
+INSERT INTO SITERESA(IDSITERESA, NOMSITERESA, URLSITERESA)
+VALUES(1, 'digitick', 'www.digitick.com');
+INSERT INTO BILLET(IDBILLET, CODEBILLET, IDEVT, IDCLI, IDTARIF, IDSITERESA)
+VALUES(1, 'AD12', 1, 1, 1, 1);

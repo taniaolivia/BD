@@ -1,0 +1,188 @@
+fichier resultat du test : memeEvtMartin/testMemeEvtMartin.out
+Contenu de la base :
+SQL> @ ../utilitaires/afficher_base_billetterie.sql
+SQL> -- ============================================================================
+SQL> -- Fichier 	 : afficher_base_billetterie.sql
+SQL> -- Auteur		 : Brouillé Théo
+SQL> -- Date		 : janvier 2019
+SQL> -- Base			     : Billetterie
+SQL> -- Role		 : Affiche le contenu de l'ensemble des relations de la base de données
+SQL> -- ============================================================================
+SQL> 
+SQL> SELECT DISTINCT IDCLI, NOMCLI, PRENOMCLI, TELCLI, MAILCLI, ADRCLI
+  2  FROM CLIENT;
+
+     IDCLI NOMCLI     PRENOMCLI  TELCLI     MAILCLI    ADRCLI                   
+---------- ---------- ---------- ---------- ---------- --------------------     
+         1 MARTIN     Jean       0505050505 jean.marti LR                       
+                                            n@example.                          
+                                            org                                 
+                                                                                
+         2 DUPONT     Charles    0506060606 charles.du La Rochelle              
+                                            pont@examp                          
+                                            le.org                              
+                                                                                
+         3 CAVIN      Pauline    0507070707 pauline.ca La Rochelle              
+                                            vin@exampl                          
+                                            e.org                               
+
+     IDCLI NOMCLI     PRENOMCLI  TELCLI     MAILCLI    ADRCLI                   
+---------- ---------- ---------- ---------- ---------- --------------------     
+                                                                                
+         4 DIDOT      Ingrid     0508080808 ingrid.did La Rochelle              
+                                            ot@example                          
+                                            .org                                
+                                                                                
+         5 DELUC      Romain     0509090909 romain.del La Rochelle              
+                                            uc@example                          
+                                            .org                                
+                                                                                
+         6 MAUREAU    Samuel     0509090909 samuel.mau La Rochelle              
+                                            reau@examp                          
+
+     IDCLI NOMCLI     PRENOMCLI  TELCLI     MAILCLI    ADRCLI                   
+---------- ---------- ---------- ---------- ---------- --------------------     
+                                            le.org                              
+                                                                                
+         7 TRUFFAT    Simon      0511111111 simon.truf La Rochelle              
+                                            fat@exampl                          
+                                            e.org                               
+                                                                                
+         8 VIVIEN     Thomas     0512121212 thomas.viv La Rochelle              
+                                            ien@exampl                          
+                                            e.org                               
+                                                                                
+         9 VAVIN      Victor     0514141414 victor.vav La Rochelle              
+
+     IDCLI NOMCLI     PRENOMCLI  TELCLI     MAILCLI    ADRCLI                   
+---------- ---------- ---------- ---------- ---------- --------------------     
+                                            in@example                          
+                                            .org                                
+                                                                                
+
+9 rows selected.
+
+SQL> 
+SQL> SELECT DISTINCT IDBILLET, CODEBILLET, IDEVT, IDCLI, IDTARIF, IDSITERESA
+  2  FROM BILLET;
+
+  IDBILLET CODEBILLET           IDEVT      IDCLI    IDTARIF IDSITERESA          
+---------- --------------- ---------- ---------- ---------- ----------          
+         1 AD001                    1          1          1                     
+         2 AD002                    1          2          1                     
+         3 AD003                    1          3          1                     
+         4 AD004                    1          3          1                     
+         5 AD005                    1          4          1                     
+         6 AD006                    1          4          1                     
+         7 AD007                    2          4          1                     
+         8 AD008                    1          5          1                     
+         9 AD009                    3          5          1                     
+        10 AD010                    1          6          1                     
+        11 AD011                    4          6          1                     
+
+  IDBILLET CODEBILLET           IDEVT      IDCLI    IDTARIF IDSITERESA          
+---------- --------------- ---------- ---------- ---------- ----------          
+        12 AD012                    3          7          1                     
+        13 AD013                    2          8          1                     
+        14 AD014                    4          9          1                     
+
+14 rows selected.
+
+SQL> 
+SQL> SELECT DISTINCT IDEVT, TITREEVT, DATEEVT, TYPEEVT, IDSALLE
+  2  FROM EVENEMENT;
+
+     IDEVT TITREEVT        DATEEVT    TYPEEVT    IDSALLE                        
+---------- --------------- ---------- ------- ----------                        
+         1 Evt A           15/12/2013 concert          1                        
+         2 Evt B           20/12/2013 concert          1                        
+         3 Evt C           15/12/2013 concert          1                        
+         4 Evt D           10/01/2014 concert          1                        
+
+SQL> 
+SQL> SELECT DISTINCT IDSALLE, NOMSALLE, ADRSALLE
+  2  FROM SALLE;
+
+   IDSALLE NOMSALLE                                                             
+---------- --------------------------------------------------                   
+ADRSALLE                                                                        
+--------------------------------------------------------------------------------
+         1 La Sir??ne                                                           
+LR                                                                              
+                                                                                
+
+SQL> 
+SQL> SELECT DISTINCT IDTARIF, PRIX, TYPETARIF
+  2  FROM TARIF;
+
+   IDTARIF       PRIX TYPETARI                                                  
+---------- ---------- --------                                                  
+         1         20 plein                                                     
+
+SQL> 
+SQL> SELECT DISTINCT IDSITERESA, NOMSITERESA, URLSITERESA
+  2  FROM SITERESA;
+
+no rows selected
+
+SQL> 
+SQL> SELECT DISTINCT IDPART, NOMPART, NATIONALITE
+  2  FROM PARTENAIRE;
+
+no rows selected
+
+SQL> 
+SQL> SELECT DISTINCT IDEVT, IDPART, PRIME
+  2  FROM SPONSORING;
+
+no rows selected
+
+SQL> 
+SQL> -- ============================================================================
+SQL> -- Requete a tester
+SQL> -- ============================================================================
+SQL> 
+SQL> -- Debut de l'affichage du resultat de la requete sur le client SqlPlus
+SQL> prompt 'Resultat de la requete'
+'Resultat de la requete'
+SQL> @ memeEvtMartin/memeEvtMartin.sql
+SQL> -- ____________________________________________________________________________
+SQL> -- Fichier 	 : memeEvtMartin.sql
+SQL> -- Auteur		 : Brouillé Théo
+SQL> -- Date		 : Janvier 2019
+SQL> -- Base			     : Billetterie
+SQL> -- Role		 : Q7. Jean MARTIN a acheté des billets pour un événement qui a lieu le 15/12/2013,
+SQL> -- 		   quels sont les autres clients qui ont acheté des billets pour ce même événement ?
+SQL> -- ____________________________________________________________________________
+SQL> -- Hypothèses si nécessaire :
+SQL> -- ____________________________________________________________________________
+SQL> -- Résultat attendu :
+SQL> --      IDCLI NOMCLI     PRENOMCLI       IDEVT
+SQL> ------------ ---------- ---------- ----------
+SQL> -- 	5 DELUC      Romain		 1
+SQL> -- 	6 MAUREAU    Samuel		 1
+SQL> -- 	2 DUPONT     Charles		 1
+SQL> -- 	3 CAVIN      Pauline		 1
+SQL> -- 	4 DIDOT      Ingrid		 1
+SQL> --____________________________________________________________________________
+SQL> -- Requête SQL :
+SQL> SELECT DISTINCT C1.idcli, C1.nomcli, C1.prenomcli, B1.idevt
+  2  FROM CLIENT C1, CLIENT C2, BILLET B1, BILLET B2
+  3  WHERE C2.idcli = B2.idcli
+  4  AND upper(C2.prenomcli) = upper('Jean')
+  5  AND upper(C2.nomcli) = upper('MARTIN')
+  6  AND B1.idevt = B2.idevt
+  7  AND C1.idcli = B1.idcli
+  8  AND C1.idcli <> C2.idcli;
+
+     IDCLI NOMCLI     PRENOMCLI       IDEVT                                     
+---------- ---------- ---------- ----------                                     
+         5 DELUC      Romain              1                                     
+         6 MAUREAU    Samuel              1                                     
+         2 DUPONT     Charles             1                                     
+         3 CAVIN      Pauline             1                                     
+         4 DIDOT      Ingrid              1                                     
+
+SQL> 
+SQL> -- Fin de l'affichage sur le client SqlPlus
+SQL> SET echo OFF

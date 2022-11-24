@@ -1,0 +1,43 @@
+fichier resultat du test : test_ddl_test2.out
+SQL> -- ============================================================================
+SQL> -- Suppression des nuplet de la table
+SQL> -- ============================================================================
+SQL> 
+SQL> set echo off
+
+0 lignes supprimées.
+
+SQL> 
+SQL> -- ============================================================================
+SQL> -- Mise en oeuvre de la séquence
+SQL> -- ============================================================================
+SQL> 
+SQL> set echo off
+
+1 ligne créée.
+
+INSERT INTO test2(ID, DESCRIPTION) VALUES (NULL,'ID = NULL and description')
+                  *
+ERREUR à la ligne 1 :
+ORA-32795: impossible d'insérer la valeur dans une colonne d'identité avec les
+mots-clés GENERATED ALWAYS 
+
+
+INSERT INTO test2(ID, DESCRIPTION) VALUES (999,'ID = 999 and description')
+                  *
+ERREUR à la ligne 1 :
+ORA-32795: impossible d'insérer la valeur dans une colonne d'identité avec les
+mots-clés GENERATED ALWAYS 
+
+
+SQL> 
+SQL> -- ============================================================================
+SQL> -- Affiche le contenu de la table
+SQL> -- ============================================================================
+SQL> 
+SQL> set echo off
+
+        ID DESCRIPTION                                                          
+---------- ----------------------------------------                             
+         1 description only                                                     
+

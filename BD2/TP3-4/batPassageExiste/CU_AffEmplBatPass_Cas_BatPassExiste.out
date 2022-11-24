@@ -1,0 +1,87 @@
+'Resultat de lexecutation de la liste de bateau passage:'
+===========================================
+Liste des bateaux de passage :
+===========================================
+
+CODPORT NOMBAT     CODMOD                                                                                                                             
+------- ---------- -------                                                                                                                            
+CC      KIONY      JJJJ                                                                                                                               
+AA      HIONY      FFFFF                                                                                                                              
+FF      QONY       HHHHH                                                                                                                              
+
+'Resultat de lexecutation du detail de bateau passage:'
+CODPORT : 'AA'
+NOMBAT : 'HIONY'
+
+PL/SQL procedure successfully completed.
+
+===========================================
+Detail du bateau de passage choisi :
+===========================================
+
+  V_ID_MOD                                                                                                                                            
+----------                                                                                                                                            
+         1                                                                                                                                            
+
+
+V_NOMPROP                                                                                                                                             
+--------------------                                                                                                                                  
+Jean                                                                                                                                                  
+
+
+V_TEL_PORTABLE                                                                                                                                        
+--------------------                                                                                                                                  
+0713452311                                                                                                                                            
+
+
+V_ADRESSE                                                                                                                                             
+--------------------                                                                                                                                  
+27 RUE DU CORDOUAN                                                                                                                                    
+
+'Resultat de lexecutation de la liste des emplacements libres:'
+Date arrivée du bateau : '25/12/2018'
+Date départ du bateau : '30/12/2018'
+
+PL/SQL procedure successfully completed.
+
+===========================================
+Liste des emplacements libres :
+===========================================
+
+   ID_EMPL BASSIN     P     EMPLNO DEB_LIBRE  FIN_LIBRE                                                                                               
+---------- ---------- - ---------- ---------- ----------                                                                                              
+         2 Jack       K          2 12/12/2018 31/12/2018                                                                                              
+
+
+   ID_EMPL BASSIN     P     EMPLNO DEB_LIBRE  FIN_LIBRE                                                                                               
+---------- ---------- - ---------- ---------- ----------                                                                                              
+         2 Jack       K          2 12/12/2018 31/12/2018                                                                                              
+
+'Resultat de lexecutation de la confirmation de lemplacement du bateau passage:'
+Identifiant : '4'
+Emplacement choisi : '3'
+
+PL/SQL procedure successfully completed.
+
+==================================================================
+Confirmation de lemplacement du bateau de passage choisi :
+==================================================================
+
+PL/SQL procedure successfully completed.
+
+
+ID_BATPASS CODPORT NOMBAT     ARV        DEPART         ID_MOD NOMPROP    TEL_PORTABLE    ADRESSE              EMPL_AFF                               
+---------- ------- ---------- ---------- ---------- ---------- ---------- --------------- ------------------ ----------                               
+         1 AA      HIONY      20/01/2019 25/01/2019          1 Jean       0713452311      27 RUE DU CORDOUAN          1                               
+         2 CC      KIONY      25/12/2018 30/12/2018          2 Ongy       0712586422      28 RUE DU CORDOUAN          2                               
+         3 FF      QONY       17/01/2019 20/01/2019          3 Ongy       0712586422      28 RUE DU CORDOUAN          3                               
+         4 AA      HIONY      25/12/2018 30/12/2018          1 Jean       0713452311      27 RUE DU CORDOUAN          3                               
+
+
+ID_BATPASS CODPORT NOMBAT     ARV        DEPART         ID_MOD NOMPROP    TEL_PORTABLE    ADRESSE              EMPL_AFF                               
+---------- ------- ---------- ---------- ---------- ---------- ---------- --------------- ------------------ ----------                               
+         1 AA      HIONY      20/01/2019 25/01/2019          1 Jean       0713452311      27 RUE DU CORDOUAN          1                               
+         2 CC      KIONY      25/12/2018 30/12/2018          2 Ongy       0712586422      28 RUE DU CORDOUAN          2                               
+         3 FF      QONY       17/01/2019 20/01/2019          3 Ongy       0712586422      28 RUE DU CORDOUAN          3                               
+         4 AA      HIONY      25/12/2018 30/12/2018          1 Jean       0713452311      27 RUE DU CORDOUAN          3                               
+

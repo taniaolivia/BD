@@ -1,0 +1,134 @@
+
+Table supprimée.
+
+Création de la table SERVICE :
+==============================
+
+Table créée.
+
+SQL> 	 DESC SERVICE
+ Nom                                                                                 NULL ?   Type
+ ----------------------------------------------------------------------------------- -------- --------------------------------------------------------
+ ID_SERVICE                                                                          NOT NULL CHAR(5)
+ NOMSERVICE                                                                          NOT NULL VARCHAR2(40)
+ ID_RESPONSABLE                                                                      NOT NULL CHAR(5)
+
+SQL> 	 set echo off
+
+Table supprimée.
+
+Création de la table EMPLOYE:
+==============================
+
+Table créée.
+
+SQL> 	 DESC EMPLOYE
+ Nom                                                                                 NULL ?   Type
+ ----------------------------------------------------------------------------------- -------- --------------------------------------------------------
+ ID_EMPLOYE                                                                          NOT NULL CHAR(5)
+ NOMEMPLOYE                                                                          NOT NULL VARCHAR2(40)
+ TEL_BUREAU                                                                                   VARCHAR2(10)
+ MEL                                                                                 NOT NULL VARCHAR2(40)
+ ID_AGENCE                                                                           NOT NULL CHAR(5)
+
+SQL> 	 set echo off
+
+Table supprimée.
+
+Création de la table AGENCE :
+==============================
+
+Table créée.
+
+SQL> 	 DESC AGENCE
+ Nom                                                                                 NULL ?   Type
+ ----------------------------------------------------------------------------------- -------- --------------------------------------------------------
+ ID_AGENCE                                                                           NOT NULL CHAR(5)
+ NOMAGENCE                                                                           NOT NULL VARCHAR2(40)
+
+SQL> 	 set echo off
+
+Table supprimée.
+
+Création de la table TYPE_DEMANDE:
+==============================
+
+Table créée.
+
+SQL> 	 DESC TYPE_DEMANDE
+ Nom                                                                                 NULL ?   Type
+ ----------------------------------------------------------------------------------- -------- --------------------------------------------------------
+ ID_TYPEDEMANDE                                                                      NOT NULL CHAR(2)
+ LIB_TYPEDEMANDE                                                                     NOT NULL VARCHAR2(40)
+
+SQL> 	 set echo off
+
+Table supprimée.
+
+Création de la table DEMANDE_TRAVAUX:
+==============================
+
+Table créée.
+
+SQL> 	 DESC DEMANDE_TRAVAUX
+ Nom                                                                                 NULL ?   Type
+ ----------------------------------------------------------------------------------- -------- --------------------------------------------------------
+ NUMDT                                                                               NOT NULL CHAR(5)
+ DATEDEMANDE                                                                         NOT NULL DATE
+ DESCRIPTION                                                                         NOT NULL VARCHAR2(60)
+ ETAT_DEMANDE                                                                        NOT NULL VARCHAR2(40)
+ DATECLOTURE                                                                         NOT NULL DATE
+ PRIORITE                                                                            NOT NULL NUMBER(2)
+ TYPEDELADEMANDE                                                                     NOT NULL CHAR(2)
+ EMMETEUR                                                                            NOT NULL CHAR(5)
+
+SQL> 	 set echo off
+
+Table supprimée.
+
+Création de la table COMMENTAIRE:
+==============================
+
+Table créée.
+
+SQL> 	 DESC COMMENTAIRE
+ Nom                                                                                 NULL ?   Type
+ ----------------------------------------------------------------------------------- -------- --------------------------------------------------------
+ ID_COMMENTAIRE                                                                      NOT NULL CHAR(5)
+ DATECOMMENTAIRE                                                                     NOT NULL DATE
+ LIB_COMMENTAIRE                                                                     NOT NULL VARCHAR2(40)
+ EMMETEUR_COMMENTAIRE                                                                NOT NULL CHAR(5)
+ NUMDT                                                                               NOT NULL CHAR(5)
+
+SQL> 	 set echo off
+
+Table supprimée.
+
+Création de la table AFFECTATION:
+==============================
+
+Table créée.
+
+SQL> 	 DESC AFFECTATION
+ Nom                                                                                 NULL ?   Type
+ ----------------------------------------------------------------------------------- -------- --------------------------------------------------------
+ DATEAFFECTATION                                                                     NOT NULL DATE
+ DATEPRISEENCHARGE                                                                   NOT NULL DATE
+ NUMDT                                                                               NOT NULL CHAR(5)
+ TECHNICIEN_AFFECTE                                                                  NOT NULL CHAR(5)
+
+SQL> 	 set echo off
+
+Table supprimée.
+
+Création de la table TECHNICIEN:
+==============================
+
+Table créée.
+
+SQL> 	 DESC TECHNICIEN
+ Nom                                                                                 NULL ?   Type
+ ----------------------------------------------------------------------------------- -------- --------------------------------------------------------
+ ID_TECHNICIEN                                                                       NOT NULL CHAR(5)
+
+SQL> 	 set echo off

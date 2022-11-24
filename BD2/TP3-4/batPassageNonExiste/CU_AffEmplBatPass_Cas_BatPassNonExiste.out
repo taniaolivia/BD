@@ -1,0 +1,57 @@
+'Resultat de lexecutation du nouveau bateau passage:'
+CODPORT : 'CC'
+NOMBAT : 'LONY'
+ID_MOD : '2'
+NOMPROP : 'Ongy'
+TEL_PORTABLE : '0712586422'
+ADRESSE : '28 RUE DU CORDOUAN'
+
+Procédure PL/SQL terminée avec succès.
+
+'Resultat de lexecutation de la liste des emplacements libres:'
+Date arrivée du bateau : '25/12/2018'
+Date départ du bateau : '30/12/2018'
+
+Procédure PL/SQL terminée avec succès.
+
+===========================================
+Liste des emplacements libres :
+===========================================
+
+   ID_EMPL BASSIN     PON     EMPLNO DEB_LIBRE  FIN_LIBRE                                                                                             
+---------- ---------- --- ---------- ---------- ----------                                                                                            
+         2 Jack       K            2 12/12/2018 31/12/2018                                                                                            
+
+
+   ID_EMPL BASSIN     PON     EMPLNO DEB_LIBRE  FIN_LIBRE                                                                                             
+---------- ---------- --- ---------- ---------- ----------                                                                                            
+         2 Jack       K            2 12/12/2018 31/12/2018                                                                                            
+
+'Resultat de lexecutation de la confirmation de lemplacement du bateau passage:'
+Identifiant : '4'
+Emplacement choisi : '1'
+
+Procédure PL/SQL terminée avec succès.
+
+==================================================================
+Confirmation de lemplacement du bateau de passage choisi :
+==================================================================
+
+Procédure PL/SQL terminée avec succès.
+
+
+ID_BATPASS CODPORT    NOMBAT     ARV        DEPART         ID_MOD NOMPROP    TEL_PORTABLE    ADRESSE              EMPL_AFF                            
+---------- ---------- ---------- ---------- ---------- ---------- ---------- --------------- ------------------ ----------                            
+         1 AA         HIONY      20/01/2019 25/01/2019          1 Jean       0713452311      27 RUE DU CORDOUAN          1                            
+         2 CC         KIONY      25/12/2018 30/12/2018          2 Ongy       0712586422      28 RUE DU CORDOUAN          2                            
+         3 FF         QONY       17/01/2019 20/01/2019          3 Ongy       0712586422      28 RUE DU CORDOUAN          3                            
+         4 CC         LONY       25/12/2018 30/12/2018          2 Ongy       0712586422      28 RUE DU CORDOUAN          1                            
+
+
+ID_BATPASS CODPORT    NOMBAT     ARV        DEPART         ID_MOD NOMPROP    TEL_PORTABLE    ADRESSE              EMPL_AFF                            
+---------- ---------- ---------- ---------- ---------- ---------- ---------- --------------- ------------------ ----------                            
+         1 AA         HIONY      20/01/2019 25/01/2019          1 Jean       0713452311      27 RUE DU CORDOUAN          1                            
+         2 CC         KIONY      25/12/2018 30/12/2018          2 Ongy       0712586422      28 RUE DU CORDOUAN          2                            
+         3 FF         QONY       17/01/2019 20/01/2019          3 Ongy       0712586422      28 RUE DU CORDOUAN          3                            
+         4 CC         LONY       25/12/2018 30/12/2018          2 Ongy       0712586422      28 RUE DU CORDOUAN          1                            
+

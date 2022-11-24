@@ -1,0 +1,158 @@
+SQL> --=============================================================================
+SQL> -- Etat de la base avant insertion
+SQL> --=============================================================================
+SQL> set echo off
+Contenu de la table Bateau Passage :
+=================================
+
+ID_BATPASS CODPORT    NOMBAT     ARV        DEPART         ID_MOD NOMPROP    TEL_PORTABLE    ADRESSE              EMPL_AFF                            
+---------- ---------- ---------- ---------- ---------- ---------- ---------- --------------- ------------------ ----------                            
+         1 AA         LONY       20/01/2019 26/01/2019          1 Jean       0713452311      24 RUE DE NERVEGE           1                            
+
+Contenu de la table Bateau Resident:
+=================================
+
+no rows selected
+
+Contenu de la table Emplacement:
+=================================
+
+   ID_EMPL BASSIN     P     EMPLNO  TYPE_EMPL                                                                                                         
+---------- ---------- - ---------- ----------                                                                                                         
+         1 Gorgey     G          1          1                                                                                                         
+
+Contenu de la table Emplacement Libre:
+=================================
+
+   ID_EMPL DEB_LIBRE  FIN_LIBRE   TYPE_EMPL                                                                                                           
+---------- ---------- ---------- ----------                                                                                                           
+         1 10/01/2019 25/01/2019          1                                                                                                           
+
+Contenu de la table Modele:
+=================================
+
+    ID_MOD CODMOD     CONSTRUCT       LONGR       LARG     TIRANT                                                                                     
+---------- ---------- ---------- ---------- ---------- ----------                                                                                     
+         1 FFFFF      Jontare         14.33      16.43       9.77                                                                                     
+
+Contenu de la table Port:
+=================================
+
+CODPORT    VILLE            CODPOSTAL                                                                                                                 
+---------- --------------- ----------                                                                                                                 
+AA         LA ROCHELLE          17000                                                                                                                 
+
+Contenu de la table Proprietaire:
+=================================
+
+   ID_PROP NOMPROP    ADRESSE            VILLE            CODPOSTAL TEL_PORTABLE                                                                      
+---------- ---------- ------------------ --------------- ---------- ---------------                                                                   
+         1 Jean       24 RUE DE NERVEGE  LA ROCHELLE          17000 713452312                                                                         
+
+Contenu de la table Sortie:
+=================================
+
+no rows selected
+
+Contenu de la table Type Emplacemment:
+=================================
+
+ TYPE_EMPL      LONGR       LARG    PROFOND                                                                                                           
+---------- ---------- ---------- ----------                                                                                                           
+         1      20.33      12.43      12.32                                                                                                           
+
+SQL> -- ============================================================================
+SQL> --  Tester l'insertion d'un nuplet dans la vue vue_SEJOUR_BATPASS
+SQL> -- ============================================================================
+SQL> -- Contenu de la vue avant insertion
+SQL> select CODPORT, NOMBAT, NOMPROP, ADRESSE, NB_SEJOURS
+  2  from   vue_SEJOUR_BATPASS;
+
+CODPORT    NOMBAT     NOMPROP    ADRESSE            NB_SEJOURS                                                                                        
+---------- ---------- ---------- ------------------ ----------                                                                                        
+AA         LONY       Jean       24 RUE DE NERVEGE           1                                                                                        
+
+SQL> 
+SQL> -- Insertion d'un nuplet dans la vue vue_SEJOUR_BATPASS
+SQL> insert into  vue_SEJOUR_BATPASS(CODPORT, NOMBAT, NOMPROP, ADRESSE)
+  2  VALUES ('BB', 'POLIANE', 'Mandy', '67 RUE DU GORGIN');
+insert into  vue_SEJOUR_BATPASS(CODPORT, NOMBAT, NOMPROP, ADRESSE)
+                               *
+ERROR at line 1:
+ORA-02287: sequence number not allowed here 
+
+
+SQL> 
+SQL> -- Contenu de la vue apres insertion
+SQL> select CODPORT, NOMBAT, NOMPROP, ADRESSE, NB_SEJOURS
+  2  from   vue_SEJOUR_BATPASS;
+
+CODPORT    NOMBAT     NOMPROP    ADRESSE            NB_SEJOURS                                                                                        
+---------- ---------- ---------- ------------------ ----------                                                                                        
+AA         LONY       Jean       24 RUE DE NERVEGE           1                                                                                        
+
+SQL> 
+SQL> set echo off
+SQL> --=============================================================================
+SQL> -- Etat de la base apres insertion
+SQL> --=============================================================================
+SQL> set echo off
+Contenu de la table Bateau Passage :
+=================================
+
+ID_BATPASS CODPORT    NOMBAT     ARV        DEPART         ID_MOD NOMPROP    TEL_PORTABLE    ADRESSE              EMPL_AFF                            
+---------- ---------- ---------- ---------- ---------- ---------- ---------- --------------- ------------------ ----------                            
+         1 AA         LONY       20/01/2019 26/01/2019          1 Jean       0713452311      24 RUE DE NERVEGE           1                            
+
+Contenu de la table Bateau Resident:
+=================================
+
+no rows selected
+
+Contenu de la table Emplacement:
+=================================
+
+   ID_EMPL BASSIN     P     EMPLNO  TYPE_EMPL                                                                                                         
+---------- ---------- - ---------- ----------                                                                                                         
+         1 Gorgey     G          1          1                                                                                                         
+
+Contenu de la table Emplacement Libre:
+=================================
+
+   ID_EMPL DEB_LIBRE  FIN_LIBRE   TYPE_EMPL                                                                                                           
+---------- ---------- ---------- ----------                                                                                                           
+         1 10/01/2019 25/01/2019          1                                                                                                           
+
+Contenu de la table Modele:
+=================================
+
+    ID_MOD CODMOD     CONSTRUCT       LONGR       LARG     TIRANT                                                                                     
+---------- ---------- ---------- ---------- ---------- ----------                                                                                     
+         1 FFFFF      Jontare         14.33      16.43       9.77                                                                                     
+
+Contenu de la table Port:
+=================================
+
+CODPORT    VILLE            CODPOSTAL                                                                                                                 
+---------- --------------- ----------                                                                                                                 
+AA         LA ROCHELLE          17000                                                                                                                 
+
+Contenu de la table Proprietaire:
+=================================
+
+   ID_PROP NOMPROP    ADRESSE            VILLE            CODPOSTAL TEL_PORTABLE                                                                      
+---------- ---------- ------------------ --------------- ---------- ---------------                                                                   
+         1 Jean       24 RUE DE NERVEGE  LA ROCHELLE          17000 713452312                                                                         
+
+Contenu de la table Sortie:
+=================================
+
+no rows selected
+
+Contenu de la table Type Emplacemment:
+=================================
+
+ TYPE_EMPL      LONGR       LARG    PROFOND                                                                                                           
+---------- ---------- ---------- ----------                                                                                                           
+         1      20.33      12.43      12.32                                                                                                           
+

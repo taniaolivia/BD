@@ -1,0 +1,140 @@
+Création de la table SORTIE :
+==============================
+
+Table créée.
+
+SQL> 	 DESC SORTIE
+ Nom                                       NULL ?   Type
+ ----------------------------------------- -------- ----------------------------
+ ID_SORTIE                                 NOT NULL NUMBER
+ CODPORT                                   NOT NULL CHAR(2)
+ NOMBAT                                    NOT NULL VARCHAR2(40)
+ DATSORT                                   NOT NULL DATE
+ DATRET                                    NOT NULL DATE
+ EFF_PRV                                   NOT NULL CHAR(3)
+
+SQL> 	 set echo off
+Création de la table BATEAU_RESIDENT:
+==============================
+
+Table créée.
+
+SQL> 	 DESC BATEAU_RESIDENT
+ Nom                                       NULL ?   Type
+ ----------------------------------------- -------- ----------------------------
+ ID_BATRES                                 NOT NULL NUMBER
+ CODPORT                                   NOT NULL CHAR(2)
+ NOMBAT                                    NOT NULL VARCHAR2(40)
+ ID_MOD                                    NOT NULL NUMBER
+ EMPL_AFF                                  NOT NULL NUMBER
+ ID_PROP                                   NOT NULL NUMBER
+
+SQL> 	 set echo off
+Création de la table BATEAU_PASSAGE :
+==============================
+
+Table créée.
+
+SQL> 	 DESC BATEAU_PASSAGE
+ Nom                                       NULL ?   Type
+ ----------------------------------------- -------- ----------------------------
+ ID_BATPASS                                NOT NULL NUMBER
+ CODPORT                                   NOT NULL CHAR(2)
+ NOMBAT                                    NOT NULL VARCHAR2(40)
+ ARV                                       NOT NULL DATE
+ DEPART                                             DATE
+ ID_MOD                                    NOT NULL NUMBER
+ NOMPROP                                   NOT NULL VARCHAR2(50)
+ TEL_PORTABLE                                       VARCHAR2(10)
+ ADRESSE                                   NOT NULL VARCHAR2(60)
+ EMPL_AFF                                  NOT NULL NUMBER
+
+SQL> 	 set echo off
+Création de la table EMPLACEMENT_LIBRE:
+==============================
+
+Table créée.
+
+SQL> 	 DESC EMPLACEMENT_LIBRE
+ Nom                                       NULL ?   Type
+ ----------------------------------------- -------- ----------------------------
+ ID_EMPL                                   NOT NULL NUMBER
+ DEB_LIBRE                                 NOT NULL DATE
+ FIN_LIBRE                                 NOT NULL DATE
+ TYPE_EMPL                                 NOT NULL NUMBER
+
+SQL> 	 set echo off
+Création de la table PROPRIETAIRE:
+==============================
+
+Table créée.
+
+SQL> 	 DESC PROPRIETAIRE
+ Nom                                       NULL ?   Type
+ ----------------------------------------- -------- ----------------------------
+ ID_PROP                                   NOT NULL NUMBER
+ NOMPROP                                   NOT NULL VARCHAR2(40)
+ ADRESSE                                   NOT NULL VARCHAR2(60)
+ VILLE                                     NOT NULL VARCHAR2(40)
+ CODPOSTAL                                 NOT NULL NUMBER(5)
+ TEL_PORTABLE                                       VARCHAR2(10)
+
+SQL> 	 set echo off
+Création de la table PORT:
+==============================
+
+Table créée.
+
+SQL> 	 DESC PORT
+ Nom                                       NULL ?   Type
+ ----------------------------------------- -------- ----------------------------
+ CODPORT                                   NOT NULL CHAR(2)
+ VILLE                                     NOT NULL VARCHAR2(40)
+ CODPOSTAL                                 NOT NULL NUMBER(5)
+
+SQL> 	 set echo off
+Création de la table MODELE:
+==============================
+
+Table créée.
+
+SQL> 	 DESC MODELE
+ Nom                                       NULL ?   Type
+ ----------------------------------------- -------- ----------------------------
+ ID_MOD                                    NOT NULL NUMBER
+ CODMOD                                             VARCHAR2(20)
+ CONSTRUCT                                 NOT NULL VARCHAR2(40)
+ LONGR                                     NOT NULL NUMBER(4,2)
+ LARG                                      NOT NULL NUMBER(4,2)
+ TIRANT                                    NOT NULL NUMBER(4,2)
+
+SQL> 	 set echo off
+Création de la table EMPLACEMENT:
+==============================
+
+Table créée.
+
+SQL> 	 DESC EMPLACEMENT
+ Nom                                       NULL ?   Type
+ ----------------------------------------- -------- ----------------------------
+ ID_EMPL                                   NOT NULL NUMBER
+ BASSIN                                    NOT NULL VARCHAR2(20)
+ PONTON                                    NOT NULL CHAR(1)
+ EMPLNO                                    NOT NULL NUMBER
+ TYPE_EMPL                                 NOT NULL NUMBER
+
+SQL> 	 set echo off
+Création de la table TYPE_EMPLACEMENT:
+==============================
+
+Table créée.
+
+SQL> 	 DESC TYPE_EMPLACEMENT
+ Nom                                       NULL ?   Type
+ ----------------------------------------- -------- ----------------------------
+ TYPE_EMPL                                 NOT NULL NUMBER
+ LONGR                                     NOT NULL NUMBER(4,2)
+ LARG                                      NOT NULL NUMBER(4,2)
+ PROFOND                                   NOT NULL NUMBER(4,2)
+
+SQL> 	 set echo off

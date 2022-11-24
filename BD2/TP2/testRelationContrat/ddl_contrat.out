@@ -1,0 +1,24 @@
+Création de la table CONTRAT :
+==============================
+
+Table créée.
+
+
+Table modifiée.
+
+
+Table modifiée.
+
+SQL> 	 DESC CONTRAT
+ Nom                                       NULL ?   Type
+ ----------------------------------------- -------- ----------------------------
+ NUMCONTRAT                                NOT NULL NUMBER
+ DATESIGNATURE                             NOT NULL DATE
+ DEBCONTRAT                                NOT NULL DATE
+ FINCONTRAT                                         DATE
+ TYPECONTRAT                               NOT NULL VARCHAR2(20)
+ CONTRACTANT                               NOT NULL NUMBER
+ EMPLACEMENT                               NOT NULL NUMBER
+
+SQL> 	 set echo off
+SQL> exit

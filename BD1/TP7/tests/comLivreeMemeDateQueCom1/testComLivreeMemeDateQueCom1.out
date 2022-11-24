@@ -1,0 +1,79 @@
+fichier resultat du test : testComLivreeMemeDateQueCom1.out
+Contenu de la base :
+Contenu de la table Client :
+=================================
+
+     IDCLI NOMCLI     PRENOMCLI      TELCLI MAILCLI            ADRCLI                                                                                 
+---------- ---------- ---------- ---------- ------------------ ------------                                                                           
+         1 MARTIN     Jean       ########## martin@example.org La Rochelle                                                                            
+         2 DUPONT     Jean       ########## dupont@example.org La Rochelle                                                                            
+         5 CAVIN      Pauline    ########## cavin@example.org  La Rochelle                                                                            
+         4 LALLIC     Tituan     ########## lallic@example.org La Rochelle                                                                            
+         6 VOTIN      Elodie     ########## votin@example.org  La Rochelle                                                                            
+
+Contenu de la table Commande:
+=================================
+
+     IDCOM      IDCLI DATECOM    DATERECEPP                                                                                                           
+---------- ---------- ---------- ----------                                                                                                           
+         1          1 01/10/2013 20/10/2013                                                                                                           
+         2          2 01/10/2013 25/10/2013                                                                                                           
+         5          5 10/10/2013 25/10/2013                                                                                                           
+         4          4 01/10/2013 20/11/2013                                                                                                           
+         6          6 05/10/2013 25/10/2013                                                                                                           
+
+Contenu de la table Ligne_Commande:
+=================================
+
+aucune ligne sélectionnée
+
+Contenu de la table Produit:
+=================================
+
+aucune ligne sélectionnée
+
+Contenu de la table Livraison:
+=================================
+
+     IDLIV      IDCOM DATELIV                                                                                                                         
+---------- ---------- ----------                                                                                                                      
+         1          1 25/11/2013                                                                                                                      
+         1          2 25/11/2013                                                                                                                      
+         2          5 25/11/2013                                                                                                                      
+         1          4 24/11/2013                                                                                                                      
+         2          6 26/11/2013                                                                                                                      
+
+Contenu de la table Livreur:
+=================================
+
+     IDLIV NOMLIV                                                                                                                                     
+---------- ----------                                                                                                                                 
+         1 BERTRAND                                                                                                                                   
+         2 MAURICE                                                                                                                                    
+
+'Resultat de la requete'
+SQL> @comLivreeMemeDateQueCom1.sql
+SQL> -- ============================================================================
+SQL> -- Fichier 	 : comLivreeMemeDateQueCom1.sql
+SQL> -- Auteur		 : Tania OLIVIA
+SQL> -- Date		 : 6 Decembre 2019
+SQL> -- Base			     : Surgeles
+SQL> -- Role		 : Quelles sont les commandes livrées à la même date que la commande de code 1 ?
+SQL> -- ============================================================================
+SQL> 
+SQL> SELECT C.IDCLI, D.IDCOM
+  2  FROM CLIENT C, COMMANDE D
+  3  WHERE C.IDCLI = D.IDCILI (SELECT L.DATELIV, I.IDCOM, V.IDLIV
+  4  			      FROM COMMANDE I, LIVRAISON L, LIVREUR V
+  5  			      WHERE I.IDCOM = 1
+  6  			      AND I.IDCOM = L.IDCOM
+  7  			      AND V.IDLIV = L.IDLIV
+  8  			      AND D.IDCOM = I.IDCOM
+  9  );
+WHERE C.IDCLI = D.IDCILI (SELECT L.DATELIV, I.IDCOM, V.IDLIV
+                          *
+ERREUR à la ligne 3 :
+ORA-00936: expression absente 
+
+
+SQL> SET echo OFF

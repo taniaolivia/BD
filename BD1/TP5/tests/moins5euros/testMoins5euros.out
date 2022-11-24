@@ -1,0 +1,99 @@
+fichier resultat du test : testMoins5euros.out
+Contenu de la base :
+Contenu de la table Client :
+=================================
+
+     IDCLI NOMCLI     PRENOMCLI      TELCLI MAILCLI            ADRCLI                                                                                 
+---------- ---------- ---------- ---------- ------------------ ------------                                                                           
+         1 MARTIN     Jean       ########## martin@example.org La Rochelle                                                                            
+
+Contenu de la table Commande:
+=================================
+
+     IDCOM      IDCLI DATECOM    DATERECEPP                                                                                                           
+---------- ---------- ---------- ----------                                                                                                           
+         2          1 01/10/2013 20/12/2013                                                                                                           
+         3          1 01/11/2013 20/12/2013                                                                                                           
+         1          1 01/09/2013 20/12/2013                                                                                                           
+         4          1 01/12/2013 20/12/2013                                                                                                           
+
+Contenu de la table Ligne_Commande:
+=================================
+
+  IDLIGCOM      IDCOM      IDPRO     QTECOM   PRIXUNIT                                                                                                
+---------- ---------- ---------- ---------- ----------                                                                                                
+         2          2          1          5          4                                                                                                
+         3          2          2          5          2                                                                                                
+         4          3          1          5          4                                                                                                
+         1          1          1          5         10                                                                                                
+         5          3          3          5         10                                                                                                
+         6          4          2          5          4                                                                                                
+
+6 lignes sélectionnées.
+
+Contenu de la table Produit:
+=================================
+
+     IDPRO NOMPRO     TYPEPRO                                                                                                                         
+---------- ---------- ---------------------                                                                                                           
+         1 A          DESSERT                                                                                                                         
+         2 B          POISSON                                                                                                                         
+         3 C          DESSERT                                                                                                                         
+
+Contenu de la table Livraison:
+=================================
+
+aucune ligne sélectionnée
+
+Contenu de la table Livreur:
+=================================
+
+aucune ligne sélectionnée
+
+'Resultat de la requete avec une sous-requete'
+SQL> @moins5euros.sql
+SQL> -- ============================================================================
+SQL> -- Fichier 	 : moins5euros.sql
+SQL> -- Auteur		 : Tania OLIVIA
+SQL> -- Date		 : 18 Novembre 2019
+SQL> -- Base			     : Surgeles
+SQL> -- Role		 : La requête avec IN pour connaître les commandes qui ne possèdent que des lignes
+SQL> -- 		   de commande dont les prix unitaires des produits sont inférieurs à 5
+SQL> -- ============================================================================
+SQL> 
+SQL> SELECT C.IDCOM, C.DATECOM
+  2  FROM COMMANDE C
+  3  WHERE C.IDCOM NOT IN (SELECT L.IDCOM
+  4  		   FROM LIGNE_COMMANDE L, COMMANDE C
+  5  		   WHERE L.PRIXUNIT >= 5
+  6  );
+
+     IDCOM DATECOM                                                                                                                                    
+---------- ----------                                                                                                                                 
+         2 01/10/2013                                                                                                                                 
+         4 01/12/2013                                                                                                                                 
+
+SQL> SET echo OFF
+'Resultat de la requete sans sous-requete'
+SQL> @moins5eurosSansSR.sql
+SQL> -- ============================================================================
+SQL> -- Fichier 	 : moins5eurosSansSR.sql
+SQL> -- Auteur		 : Tania OLIVIA
+SQL> -- Date		 : 18 Novembre 2019
+SQL> -- Base			     : Surgeles
+SQL> -- Role		 : La requête sans sous-rêquete pour connaître les commandes qui ne possèdent que des lignes
+SQL> -- 		   de commande dont les prix unitaires des produits sont inférieurs à 5
+SQL> -- ============================================================================
+SQL> 
+SQL> SELECT C.IDCOM, C.DATECOM
+  2  FROM COMMANDE C, LIGNE_COMMANDE L
+  3  WHERE C.IDCOM = L.IDCOM
+  4  GROUP BY C.IDCOM, C.DATECOM
+  5  HAVING MAX(L.PRIXUNIT) < 5;
+
+     IDCOM DATECOM                                                                                                                                    
+---------- ----------                                                                                                                                 
+         2 01/10/2013                                                                                                                                 
+         4 01/12/2013                                                                                                                                 
+
+SQL> SET echo OFF

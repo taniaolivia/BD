@@ -1,0 +1,71 @@
+fichier resultat du test : masseTotaleMarsMai/testMasseTotaleMarsMai.out
+Contenu de la base :
+Contenu de la table Apiculteur :
+=================================
+
+     IDAPI NOMAPI     PRENOMAPI  TELAPI          MAILAPI              ADRAPI                                                      
+---------- ---------- ---------- --------------- -------------------- ------------                                                
+         2 VANILLE    Charles    0607070707      vanille@example.org  La Rochelle                                                 
+         3 LALLIC     Tituan     0707070707      lallic@example.org   La Rochelle                                                 
+         1 DUPONT     Jean       0606060606      dupont@example.org   La Rochelle                                                 
+
+Contenu de la table Rucher:
+=================================
+
+  IDRUCHER TYPEMIEL                                                                                                               
+---------- ------------------                                                                                                     
+         2 colza                                                                                                                  
+         3 sapin                                                                                                                  
+         4 thym                                                                                                                   
+         1 acacia                                                                                                                 
+
+Contenu de la table Ruche:
+=================================
+
+      IDRU    NBCADRE      IDAPI   IDRUCHER                                                                                       
+---------- ---------- ---------- ----------                                                                                       
+         2         10          2          2                                                                                       
+         4         15          3          3                                                                                       
+         5          5          3          4                                                                                       
+         1          1          1          1                                                                                       
+         3         11          3          1                                                                                       
+
+Contenu de la table Recolte:
+=================================
+
+      IDRU DATEREC         MASSE                                                                                                  
+---------- ---------- ----------                                                                                                  
+         2 23/03/2018          4                                                                                                  
+         4 25/05/2018          6                                                                                                  
+         5 02/04/2018          8                                                                                                  
+         1 01/12/2018          5                                                                                                  
+         2 10/06/2018          9                                                                                                  
+         3 01/12/2018          9                                                                                                  
+
+6 lignes sélectionnées.
+
+'Resultat de la requete'
+SQL> @masseTotaleMarsMai/masseTotaleMarsMai.sql
+SQL> -- ============================================================================
+SQL> -- Fichier 	 : masseTotaleMarsMai.sql
+SQL> -- Auteur		 : Tania OLIVIA
+SQL> -- Date		 : 11 Decembre 2019
+SQL> -- Base			     : Ruche
+SQL> -- Role		 : Quelle est la masse totale de miel récolté entre mars 2018 et mai 2018 par type de miel ?
+SQL> -- ============================================================================
+SQL> 
+SQL> SELECT RU.TYPEMIEL, SUM(RE.MASSE) AS MasseTotale
+  2  FROM RUCHER RU, RUCHE R, RECOLTE RE
+  3  WHERE R.IDRU = RE.IDRU
+  4  AND RU.IDRUCHER = R.IDRUCHER
+  5  AND RE.DATEREC BETWEEN TO_DATE('01/03/2018', 'DD/MM/YYYY')
+  6  AND TO_DATE('31/05/2018', 'DD/MM/YYYY')
+  7  GROUP BY RU.TYPEMIEL;
+
+TYPEMIEL           MASSETOTALE                                                                                                    
+------------------ -----------                                                                                                    
+sapin                        6                                                                                                    
+thym                         8                                                                                                    
+colza                        4                                                                                                    
+
+SQL> SET echo OFF

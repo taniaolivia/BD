@@ -1,0 +1,135 @@
+fichier resultat du test : test_vue_SEJOUR_BATPASS.out
+Contenu de la base :
+SQL> @afficheContenuBase.sql
+SQL> 
+SQL> --==========================
+SQL> --fichier		 : afficherContenuBase.sql
+SQL> --base		 : port plaisance
+SQL> --auteur(s)	 : Tania OLIVIA
+SQL> --date		 : 19/03/2020
+SQL> --role		 : Afficher l’ensemble du contenu des tables de la base de données
+SQL> --projet		 : port plaisance
+SQL> --resultat dans	 :  // à renseigner si nécessaire
+SQL> --==========================
+SQL> 
+SQL> PROMPT Contenu de la table Bateau Passage :
+Contenu de la table Bateau Passage :
+SQL> PROMPT =================================
+=================================
+SQL> SELECT *
+  2  FROM BATEAU_PASSAGE;
+
+ID_BATPASS CODPORT    NOMBAT     ARV        DEPART         ID_MOD NOMPROP    TEL_PORTABLE    ADRESSE              EMPL_AFF                            
+---------- ---------- ---------- ---------- ---------- ---------- ---------- --------------- ------------------ ----------                            
+         1 AA         LONY       20/01/2019 25/01/2019          1 Jean       0713452311      24 RUE DE NERVEGE           1                            
+         2 AA         KANEKI     17/12/2019 24/12/2019          1 Nilo       0713452311      18 RUE DE HILL              2                            
+
+SQL> 
+SQL> PROMPT Contenu de la table Bateau Resident:
+Contenu de la table Bateau Resident:
+SQL> PROMPT =================================
+=================================
+SQL> SELECT *
+  2  FROM BATEAU_RESIDENT;
+
+no rows selected
+
+SQL> 
+SQL> PROMPT Contenu de la table Emplacement:
+Contenu de la table Emplacement:
+SQL> PROMPT =================================
+=================================
+SQL> SELECT *
+  2  FROM EMPLACEMENT;
+
+   ID_EMPL BASSIN     P     EMPLNO  TYPE_EMPL                                                                                                         
+---------- ---------- - ---------- ----------                                                                                                         
+         1 Gorgey     G          1          1                                                                                                         
+         2 Cookie     C          2          2                                                                                                         
+
+SQL> 
+SQL> PROMPT Contenu de la table Emplacement Libre:
+Contenu de la table Emplacement Libre:
+SQL> PROMPT =================================
+=================================
+SQL> SELECT *
+  2  FROM EMPLACEMENT_LIBRE;
+
+   ID_EMPL DEB_LIBRE  FIN_LIBRE   TYPE_EMPL                                                                                                           
+---------- ---------- ---------- ----------                                                                                                           
+         1 10/01/2019 25/01/2019          1                                                                                                           
+         2 11/12/2019 21/12/2019          2                                                                                                           
+
+SQL> 
+SQL> PROMPT Contenu de la table Modele:
+Contenu de la table Modele:
+SQL> PROMPT =================================
+=================================
+SQL> SELECT *
+  2  FROM MODELE;
+
+    ID_MOD CODMOD     CONSTRUCT       LONGR       LARG     TIRANT                                                                                     
+---------- ---------- ---------- ---------- ---------- ----------                                                                                     
+         1 FFFFF      Jontare         14.33      16.43       9.77                                                                                     
+
+SQL> 
+SQL> PROMPT Contenu de la table Port:
+Contenu de la table Port:
+SQL> PROMPT =================================
+=================================
+SQL> SELECT *
+  2  FROM PORT;
+
+CODPORT    VILLE            CODPOSTAL                                                                                                                 
+---------- --------------- ----------                                                                                                                 
+AA         LA ROCHELLE          17000                                                                                                                 
+
+SQL> 
+SQL> PROMPT Contenu de la table Proprietaire:
+Contenu de la table Proprietaire:
+SQL> PROMPT =================================
+=================================
+SQL> SELECT *
+  2  FROM PROPRIETAIRE;
+
+   ID_PROP NOMPROP    ADRESSE            VILLE            CODPOSTAL TEL_PORTABLE                                                                      
+---------- ---------- ------------------ --------------- ---------- ---------------                                                                   
+         1 Jean       24 RUE DE NERVEGE  LA ROCHELLE          17000 713452312                                                                         
+         2 Nilo       18 RUE DE HILL     LILLE                50937 456823912                                                                         
+
+SQL> 
+SQL> PROMPT Contenu de la table Sortie:
+Contenu de la table Sortie:
+SQL> PROMPT =================================
+=================================
+SQL> SELECT *
+  2  FROM SORTIE;
+
+no rows selected
+
+SQL> 
+SQL> PROMPT Contenu de la table Type Emplacemment:
+Contenu de la table Type Emplacemment:
+SQL> PROMPT =================================
+=================================
+SQL> SELECT *
+  2  FROM TYPE_EMPLACEMENT;
+
+ TYPE_EMPL      LONGR       LARG    PROFOND                                                                                                           
+---------- ---------- ---------- ----------                                                                                                           
+         1      20.33      12.43      12.32                                                                                                           
+         2      49.33      45.43      54.32                                                                                                           
+
+SQL> 
+SQL> set echo on
+SQL> -- ============================================================================
+SQL> -- Afficher le contenu de la vue
+SQL> -- ============================================================================
+SQL> set echo off
+'Contenu de la vue : vue_SEJOUR_BATPASS'
+
+CODPORT    NOMBAT     NOMPROP    ADRESSE            NB_SEJOURS                                                                                        
+---------- ---------- ---------- ------------------ ----------                                                                                        
+AA         LONY       Jean       24 RUE DE NERVEGE           1                                                                                        
+AA         KANEKI     Nilo       18 RUE DE HILL              1                                                                                        
+

@@ -1,0 +1,53 @@
+-- ==========================
+-- fichier 	: schemaRelationnel_gestionDT.txt
+-- base 	: Gestion DT
+-- auteur   : Tania OLIVIA
+-- date 	: 16/04/2020
+-- role 	: créer les schémas rélationnels de la gestion DT
+-- projet 	: Gestion DT
+-- resultat dans : //
+-- ==========================
+
+--------------------------------------------
+------------Schéma Rélationnel--------------
+--------------------------------------------
+
+SERVICE(ID_SERVICE, NOMSERVICE, ID_RESPONSABLE)
+   - clé primaire : ID_SERVICE (Règle R1)
+   - dépendance de référence : SERVICE.ID_RESPONSABLE référence EMPLOYE.ID_EMPLOYE (Règle R4)
+
+
+EMPLOYE(ID_EMPLOYE, NOMEMPLOYE, TEL_BUREAU, MEL, ID_AGENCE)
+   - clé primaire : ID_EMPLOYE (Règle R1)
+   - dépendance de référence : SERVICE.ID_RESPONSABLE référence EMPLOYE.ID_EMPLOYE (Règle R2)
+
+
+AGENCE(ID_AGENCE, NOMAGENCE)
+   - clé primaire : ID_AGENCE (Règle R1)
+   
+ 
+TYPE_DEMANDE(ID_TYPEDEMANDE, LIB_TYPEDEMANDE)
+   - clé primaire : ID_TYPEDEMANDE (Règle R1)
+
+
+DEMANDE_TRAVAUX(NUMDT, DATEDEMANDE, DESCRIPTION, ETAT_DEMANDE, DATECLOTURE, PRIORITE, TYPEDELADEMANDE, EMMETEUR)
+   - clé primaire : NUMDT (Règle R1)
+   - dépendance de référence : DEMANDE_TRAVAUX.TYPEDELADEMANDE référence TYPE_DEMANDE.ID_TYPEDEMANDE (Règle R2)
+                               DEMANDE_TRAVAUX.EMMETEUR référence EMPLOYE.ID_EMPLOYE (Règle R2)
+
+             
+COMMENTAIRE(ID_COMMENTAIRE, DATECOMMENTAIRE, LIB_COMMENTAIRE, EMMETEUR_COMMENTAIRE, NUMDT)
+   - clé primaire : ID_EMPLOYE (Règle R1)
+   - dépendance de référence : COMMENTAIRE.NUMDUT référence DEMANDE_TRAVAUX.NUMDUT (Règle R2)
+                               COMMENTAIRE.EMMETEUR_COMMENTAIRE référence TECHNICIEN.ID_TECHNICIEN (Règle R2) 
+
+
+AFFECTATION(NUMDT, TECHNICIEN_AFFECTE, DATEAFFECTATION, DATEPRISEENCHARGE)
+   - clé primaire : NUMDT, TECHNICIEN_AFFECTE (Règle R3)
+   - dépendance de référence : AFFECTATION.NUMDT référence DEMANDE_TRAVAUX.NUMDUT (Règle R3)
+                               AFFECTATION.TECHNICIEN_AFFECTE référence TECHNICIEN.ID_TECHNICIEN (Règle R3)
+                               
+
+TECHNICIEN(ID_TECHNICIEN)
+   - clé primaire : ID_TECHNICIEN (Règle R5)
+   - dépendance de référence : TECHNICIEN.ID_TECHNICIEN référence EMPLOYE.ID_EMPLOYE (Règle R5)

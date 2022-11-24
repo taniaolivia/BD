@@ -1,0 +1,23 @@
+-- ============================================================================
+-- fichier : tolivia_ajouter_installation_vue.txt
+-- auteur : Tania OLIVIA
+-- date : Mai 2020
+-- role : ajouter une installation à travers la vue
+-- ============================================================================
+
+-- ============================================================================
+-- A compléter
+-- ============================================================================
+
+
+Non, il n'est pas possible d’ajouter une installation à travers cette vue (tolivia_vue_install_en_cours) 
+parce qu'il y a une restriction pour insérer. (Voir sur le fichiel exercice_2/tolivia_infos_vue_install_en_cours.sql)
+
+
+
+
+
+
+-- ============================================================================
+-- Fin à compléter
+-- ============================================================================

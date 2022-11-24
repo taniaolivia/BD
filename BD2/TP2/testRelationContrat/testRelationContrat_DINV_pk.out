@@ -1,0 +1,31 @@
+fichier resultat du test : testRelationContrat_DINV_pk.out
+SQL> -- ============================================================================
+SQL> -- Contenu de la table RelationContrat avant INSERT
+SQL> -- ============================================================================
+SQL> set echo off
+
+no rows selected
+
+SQL> -- ============================================================================
+SQL> -- Cas : 1
+SQL> -- L'integrité constrainte de la cle primaire du NUMCONTRAT est valide
+SQL> -- ============================================================================
+SQL> set echo off
+
+1 row created.
+
+INSERT INTO CONTRAT (NUMCONTRAT, DATESIGNATURE, DEBCONTRAT, FINCONTRAT, TYPECONTRAT, CONTRACTANT, EMPLACEMENT)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (TOLIVIA.PK_CONTRAT) violated 
+
+
+SQL> -- ============================================================================
+SQL> -- Contenu de la table RelationContrat apres INSERT
+SQL> -- ============================================================================
+SQL> set echo off
+
+NUMCONTRAT DATESIGNAT DEBCONTRAT FINCONTRAT TYPECONTRAT          CONTRACTANT EMPLACEMENT                                                              
+---------- ---------- ---------- ---------- -------------------- ----------- -----------                                                              
+         1 10/12/2020 20/02/2021            annuel                         1           1                                                              
+

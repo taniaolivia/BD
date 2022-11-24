@@ -1,0 +1,8 @@
+SQL> @/Utilisateurs/tolivia/S2/BD2/TP3-4/gestionSchema/supprimerMesTables.sql
+
+Procédure créée.
+
+
+Procédure PL/SQL terminée avec succès.
+
+SQL> spool off

@@ -1,0 +1,71 @@
+fichier resultat du test : testPartageRuchers.out
+Contenu de la base :
+Contenu de la table Apiculteur :
+=================================
+
+     IDAPI NOMAPI     PRENOMAPI  TELAPI          MAILAPI              ADRAPI                                                      
+---------- ---------- ---------- --------------- -------------------- ------------                                                
+         1 DUPONT     Jean       0606060606      dupont@example.org   La Rochelle                                                 
+         2 VANILLE    Charles    0607070707      vanille@example.org  La Rochelle                                                 
+         3 LALLIC     Tituan     0707070707      lallic@example.org   La Rochelle                                                 
+
+Contenu de la table Rucher:
+=================================
+
+  IDRUCHER TYPEMIEL                                                                                                               
+---------- ------------------                                                                                                     
+         1 acacia                                                                                                                 
+         2 colza                                                                                                                  
+         3 sapin                                                                                                                  
+         4 thym                                                                                                                   
+
+Contenu de la table Ruche:
+=================================
+
+      IDRU    NBCADRE      IDAPI   IDRUCHER                                                                                       
+---------- ---------- ---------- ----------                                                                                       
+         1          1          1          1                                                                                       
+         2         10          2          2                                                                                       
+         3         11          3          3                                                                                       
+         4          5          3          4                                                                                       
+         5         15          3          1                                                                                       
+
+Contenu de la table Recolte:
+=================================
+
+      IDRU DATEREC         MASSE                                                                                                  
+---------- ---------- ----------                                                                                                  
+         1 01/12/2018          5                                                                                                  
+         2 23/03/2018          4                                                                                                  
+         3 01/10/2018          9                                                                                                  
+         4 02/04/2018          8                                                                                                  
+         5 25/05/2018          6                                                                                                  
+
+'Resultat de la requete'
+SQL> @partageRuchers.sql
+SQL> -- ============================================================================
+SQL> -- Fichier 	 : moins5euros.sql
+SQL> -- Auteur		 : Tania OLIVIA
+SQL> -- Date		 : 18 Novembre 2019
+SQL> -- Base			     : Surgeles
+SQL> -- Role		 : La requête avec IN pour connaître les commandes qui ne possèdent que des lignes
+SQL> -- 		   de commande dont les prix unitaires des produits sont inférieurs à 5
+SQL> -- ============================================================================
+SQL> 
+SQL> 
+SQL> SELECT A2.IDAPI, A2.NOMAPI, A2.PRENOMAPI, R2.IDRUCHER
+  2  FROM APICULTEUR A1, APICULTEUR A2, RUCHE R1, RUCHE R2, RUCHER RU1, RUCHER RU2
+  3  WHERE A1.NOMAPI = 'DUPONT'
+  4  AND A1.PRENOMAPI = 'Jean'
+  5  AND A2.NOMAPI != 'DUPONT'
+  6  AND A1.IDAPI = R1.IDAPI
+  7  AND R2.IDRUCHER = RU2.IDRUCHER
+  8  AND R1.IDRUCHER = RU1.IDRUCHER
+  9  AND RU1.IDRUCHER = RU2.IDRUCHER
+ 10  AND R2.IDAPI = A2.IDAPI;
+
+     IDAPI NOMAPI     PRENOMAPI    IDRUCHER                                                                                       
+---------- ---------- ---------- ----------                                                                                       
+         3 LALLIC     Tituan              1                                                                                       
+
+SQL> SET echo OFF

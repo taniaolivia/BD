@@ -1,0 +1,58 @@
+SQL> -------------------------------------------------------------------------------
+SQL> -- Etat de la base avant
+SQL> -------------------------------------------------------------------------------
+SQL> set echo off;
+Contenu de la table PORT :
+
+CODPORT         VILLE            CODPOSTAL                                                                                                            
+--------------- --------------- ----------                                                                                                            
+LR              LA ROCHELLE          17000                                                                                                            
+
+Contenu de la table MODELE :
+
+    ID_MOD CODMOD          CONSTRUCT            LONGR       LARG     TIRANT                                                                           
+---------- --------------- --------------- ---------- ---------- ----------                                                                           
+         1 FFFFF           Jontare              14,33      16,43       9,77                                                                           
+
+Contenu de la table EMPLACEMENT_LIBRE :
+
+   ID_EMPL DEB_LIBRE        FIN_LIBRE         TYPE_EMPL                                                                                               
+---------- ---------------- ---------------- ----------                                                                                               
+         3 10/01/2019       25/03/2019                3                                                                                               
+         2 12/02/2019       31/05/2019                2                                                                                               
+         4 10/01/2019       20/01/2019                4                                                                                               
+
+Contenu de la table BATEAU_PASSAGE :
+
+CODPORT         NOMBAT          ARV        DEPART         ID_MOD NOMPROP         TEL_PORTABLE ADRESSE              EMPL_AFF                           
+--------------- --------------- ---------- ---------- ---------- --------------- ------------ ------------------ ----------                           
+LR              MOMO            01/03/2019 15/03/2019          1 Jean                         24 RUE DE NERVEGE           3                           
+LR              KIONY           15/03/2019 30/03/2019          1 Ongy            0712586422   28 RUE DU CORDOUAN          2                           
+LR              SISI            17/01/2019 20/01/2019          1 Ongy            0712586422   28 RUE DU CORDOUAN          4                           
+
+Contenu de la table BATEAU_RESIDENT :
+
+aucune ligne sélectionnée
+
+Contenu de la table SORTIE :
+
+aucune ligne sélectionnée
+
+SQL> -------------------------------------------------------------------------------
+SQL> -- Affectation d'une place libre a un bateau de passage
+SQL> -------------------------------------------------------------------------------
+SQL> -- Tester l'exécution de la procédure : listeEmplacementsLibres
+SQL> -- Chercher une place libre pour le bateau de passage
+SQL> -- BATEAU_PASSAGE.IDMOD = 1
+SQL> -- BATEAU_PASSAGE.ARRIVEE = '01/03/2019'
+SQL> -- BATEAU_PASSAGE.DEPART = '15/03/2019'
+SQL> select * from table(TOLIVIA.listeEmplacementsLibres(1, '01/03/2019', '15/03/2019'));
+
+   ID_EMPL BASSIN          PONTON              EMPLNO DEB_LIBRE        FIN_LIBRE                                                                      
+---------- --------------- --------------- ---------- ---------------- ----------------                                                               
+         2 Jack            K                        2 12/02/2019       31/05/2019                                                                     
+
+SQL> 
+SQL> -- Tester l'insertion dans la table BATEAU_PASSAGE
+SQL> -- Affecter la place id_empl=3 au bateau de passage
+SQL> INSERT INTO TOLIVIA.BATEAU_PASSAGE (ID_

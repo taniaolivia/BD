@@ -1,0 +1,81 @@
+--==========================
+--fichier : modele_insert_ruche.txt
+--base: ruche
+--auteur(s): Tania OLIVIA
+--date : 13/12/2019
+--role: Insérer un nuplet dans chacune des relations de la base de donnée
+--projet: ruche
+--resultat dans:  // à renseigner si nécessaire
+--==========================
+
+-- CAS1
+------- L'apiculteur
+INSERT INTO APICULTEUR (IDAPI, NOMAPI, PRENOMAPI, TELAPI, MAILAPI, ADRAPI)
+VALUES(1, 'DUPONT', 'Jean', '0606060606', 'dupont@example.org', 'La Rochelle'); 
+------- Le rucher
+INSERT INTO RUCHER (IDRUCHER, TYPEMIEL)
+VALUES(1, 'acacia');
+------- La ruche
+INSERT INTO RUCHE (IDRU, NBCADRE, IDAPI, IDRUCHER)
+VALUES(1, 1, 1, 1);
+------- La recolte
+INSERT INTO RECOLTE (IDRU, DATEREC, MASSE)
+VALUES(1, '01/12/2018', '5');
+
+
+-- CAS2
+------- L'apiculteur
+INSERT INTO APICULTEUR (IDAPI, NOMAPI, PRENOMAPI, TELAPI, MAILAPI, ADRAPI)
+VALUES(3, 'LALLIC', 'Tituan', '0707070707', 'lallic@examp-- L’identifiant de l’apiculteur 2 ne produise pas du miel de type « acacia » mais elle produise du miel de type « thym »
+VALUES(3, 11, 3, 1);
+------- Le recolte
+INSERT INTO RECOLTE (IDRU, DATEREC, MASSE)
+VALUES(3, '01/12/2018', '9');
+
+
+
+-- CAS3
+INSERT INTO APICULTEUR (IDAPI, NOMAPI, PRENOMAPI, TELAPI, MAILAPI, ADRAPI)
+VALUES(2, 'VANILLE', 'Charles', '0607070707', 'vanille@example.org', 'La Rochelle'); 
+------- Le rucher
+INSERT INTO RUCHER (IDRUCHER, TYPEMIEL)
+VALUES(2, 'colza');
+------- La ruche
+INSERT INTO RUCHE (IDRU, NBCADRE, IDAPI, IDRUCHER)
+VALUES(2, 10, 2, 2);
+------- Le recolte
+INSERT INTO RECOLTE (IDRU, DATEREC, MASSE)
+VALUES(2, '23/03/2018', '4');
+
+
+
+-- CAS4
+------- Le recolte
+INSERT INTO RECOLTE (IDRU, DATEREC, MASSE)
+VALUES(2, '10/06/2018', '9');
+
+
+
+-- CAS5
+------- Le rucher
+INSERT INTO RUCHER (IDRUCHER, TYPEMIEL)
+VALUES(3, 'sapin');
+------- La ruche
+INSERT INTO RUCHE (IDRU, NBCADRE, IDAPI, IDRUCHER)
+VALUES(4, 15, 3, 3);
+------- Le recolte
+INSERT INTO RECOLTE (IDRU, DATEREC, MASSE)
+VALUES(4, '25/05/2018', '6');
+
+
+
+-- CAS6
+------- Le rucher
+INSERT INTO RUCHER (IDRUCHER, TYPEMIEL)
+VALUES(4, 'thym');
+------- La ruche
+INSERT INTO RUCHE (IDRU, NBCADRE, IDAPI, IDRUCHER)
+VALUES(5, 5, 3, 4);
+------- Le recolte
+INSERT INTO RECOLTE (IDRU, DATEREC, MASSE)
+VALUES(5, '02/04/2018', '8');

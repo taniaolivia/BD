@@ -1,0 +1,153 @@
+-- ==========================
+-- fichier 	: ddl_gestionDT.sql
+-- base 	: gestion DT
+-- auteur   : Tania OLIVIA
+-- date 	: 02/04/2020
+-- role 	: créer toutes les relations de la base + les contraintes
+-- projet 	: gestion DR
+-- resultat dans : ddl_gestionDT.out
+-- ==========================
+
+spool ddl_gestionDT.out
+
+DROP TABLE SERVICE CASCADE CONSTRAINT;
+
+    prompt Création de la table SERVICE :
+    prompt ==============================
+
+
+CREATE TABLE SERVICE(
+ID_SERVICE CHAR(5) NOT NULL,
+NOMSERVICE VARCHAR2(40) NOT NULL,
+ID_RESPONSABLE CHAR(5) NOT NULL,
+CONSTRAINT PK_SERVICE PRIMARY KEY (ID_SERVICE)
+);
+
+    set echo on
+    DESC SERVICE
+    set echo off
+
+DROP TABLE EMPLOYE CASCADE CONSTRAINT;
+
+    prompt Création de la table EMPLOYE:
+    prompt ==============================
+
+CREATE TABLE EMPLOYE (
+ID_EMPLOYE CHAR(5) NOT NULL,
+NOMEMPLOYE  VARCHAR2(40) NOT NULL,
+TEL_BUREAU	VARCHAR2(10) NULL,
+MEL	VARCHAR2(40) NOT NULL,
+ID_AGENCE CHAR(5) NOT NULL,
+CONSTRAINT  PK_EMPLOYE PRIMARY KEY (ID_EMPLOYE)
+);
+
+    set echo on
+    DESC EMPLOYE
+    set echo off
+
+DROP TABLE AGENCE CASCADE CONSTRAINT;
+
+    prompt Création de la table AGENCE :
+    prompt ==============================
+
+CREATE TABLE AGENCE (
+ID_AGENCE CHAR(5) NOT NULL,
+NOMAGENCE VARCHAR2(40) NOT NULL,
+CONSTRAINT  PK_AGENCE  PRIMARY KEY (ID_AGENCE)
+);
+
+    set echo on
+    DESC AGENCE
+    set echo off
+
+DROP TABLE TYPE_DEMANDE CASCADE CONSTRAINT;
+
+    prompt Création de la table TYPE_DEMANDE:
+    prompt ==============================
+
+CREATE TABLE TYPE_DEMANDE (
+ID_TYPEDEMANDE CHAR(2) NOT NULL,
+LIB_TYPEDEMANDE VARCHAR2(40) NOT NULL,
+CONSTRAINT  PK_TYPE_DEMANDE  PRIMARY KEY (ID_TYPEDEMANDE)
+);
+
+    set echo on
+    DESC TYPE_DEMANDE
+    set echo off
+
+DROP TABLE DEMANDE_TRAVAUX CASCADE CONSTRAINT;
+
+    prompt Création de la table DEMANDE_TRAVAUX:
+    prompt ==============================
+
+CREATE TABLE DEMANDE_TRAVAUX (
+NUMDT  CHAR(5) NOT NULL,
+DATEDEMANDE  DATE  NOT NULL,
+DESCRIPTION	VARCHAR2(60) NOT NULL,
+ETAT_DEMANDE VARCHAR2(40) NOT NULL,
+DATECLOTURE DATE  NOT NULL,
+PRIORITE NUMBER(2) NOT NULL,
+TYPEDELADEMANDE CHAR(2) NOT NULL,
+EMMETEUR CHAR(5) NOT NULL,
+CONSTRAINT  PK_DEMANDE_TRAVAUX  PRIMARY KEY (NUMDT),
+CONSTRAINT  CHK_ETAT_DEMANDE  CHECK (ETAT_DEMANDE IN('Postée', 'Affecté', 'En cours', 'Cloturée')),
+CONSTRAINT CHK_DATECLOTURE CHECK ((DATECLOTURE IS NOT NULL AND ETAT_DEMANDE = 'Cloturée')
+                                   OR (DATECLOTURE IS NULL AND ETAT_DEMANDE != 'Cloturée'))
+);
+
+    set echo on
+    DESC DEMANDE_TRAVAUX
+    set echo off
+
+DROP TABLE COMMENTAIRE CASCADE CONSTRAINT;
+
+    prompt Création de la table COMMENTAIRE:
+    prompt ==============================
+
+CREATE TABLE COMMENTAIRE (
+ID_COMMENTAIRE CHAR(5) NOT NULL,
+DATECOMMENTAIRE	DATE	 NOT NULL,
+LIB_COMMENTAIRE	VARCHAR2(40) NOT NULL,
+EMMETEUR_COMMENTAIRE CHAR(5) NOT NULL,
+NUMDT CHAR(5) NOT NULL,
+CONSTRAINT  PK_COMMENTAIRE PRIMARY KEY (ID_COMMENTAIRE)
+);
+
+    set echo on
+    DESC COMMENTAIRE
+    set echo off
+
+DROP TABLE AFFECTATION CASCADE CONSTRAINT;
+
+    prompt Création de la table AFFECTATION:
+    prompt ==============================
+
+
+CREATE TABLE AFFECTATION (
+DATEAFFECTATION  DATE  NOT NULL,
+DATEPRISEENCHARGE DATE NOT NULL,
+NUMDT CHAR(5) NOT NULL,
+TECHNICIEN_AFFECTE CHAR(5) NOT NULL,
+CONSTRAINT  PK_AFFECTATION  PRIMARY KEY (NUMDT, TECHNICIEN_AFFECTE),
+CONSTRAINT CHK_DATEAFFPRISE CHECK(DATEAFFECTATION < DATEPRISEENCHARGE)
+);
+
+    set echo on
+    DESC AFFECTATION
+    set echo off
+
+DROP TABLE TECHNICIEN CASCADE CONSTRAINT;
+
+    prompt Création de la table TECHNICIEN:
+    prompt ==============================
+
+CREATE TABLE TECHNICIEN (
+ID_TECHNICIEN CHAR(5) NOT NULL,
+CONSTRAINT  PK_TECHNICIEN PRIMARY KEY (ID_TECHNICIEN)
+);
+
+    set echo on
+    DESC TECHNICIEN
+    set echo off
+
+spool off;

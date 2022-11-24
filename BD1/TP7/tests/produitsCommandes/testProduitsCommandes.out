@@ -1,0 +1,84 @@
+fichier resultat du test : testProduitsCommandes.out
+Contenu de la base :
+Contenu de la table Client :
+=================================
+
+     IDCLI NOMCLI     PRENOMCLI      TELCLI MAILCLI            ADRCLI                                                                                 
+---------- ---------- ---------- ---------- ------------------ ------------                                                                           
+         1 MARTIN     Jean       ########## martin@example.org La Rochelle                                                                            
+
+Contenu de la table Commande:
+=================================
+
+     IDCOM      IDCLI DATECOM    DATERECEPP                                                                                                           
+---------- ---------- ---------- ----------                                                                                                           
+         1          1 01/10/2013 20/10/2013                                                                                                           
+
+Contenu de la table Ligne_Commande:
+=================================
+
+  IDLIGCOM      IDCOM      IDPRO     QTECOM   PRIXUNIT                                                                                                
+---------- ---------- ---------- ---------- ----------                                                                                                
+         1          1          1          5        3,4                                                                                                
+         2          1          2          5        3,4                                                                                                
+         3          1          1          5        3,4                                                                                                
+
+Contenu de la table Produit:
+=================================
+
+     IDPRO NOMPRO     TYPEPRO                                                                                                                         
+---------- ---------- ---------------------                                                                                                           
+         1 Chocolat   DESSERT                                                                                                                         
+         2 Purée      DESSERT                                                                                                                         
+
+Contenu de la table Livraison:
+=================================
+
+aucune ligne sélectionnée
+
+Contenu de la table Livreur:
+=================================
+
+aucune ligne sélectionnée
+
+'Resultat de la requete avec Distinct'
+SQL> @produitsCommandesDistinct.sql
+SQL> -- ============================================================================
+SQL> -- Fichier 	 : produitsCommandesDistinct.sql
+SQL> -- Auteur		 : Tania OLIVIA
+SQL> -- Date		 : 6 Decembre 2019
+SQL> -- Base			     : Surgeles
+SQL> -- Role		 : La rêquete avec DISTINCT
+SQL> -- ============================================================================
+SQL> 
+SQL> SELECT DISTINCT L.IDPRO, P.NOMPRO
+  2  FROM LIGNE_COMMANDE L, PRODUIT P
+  3  WHERE L.IDPRO = P.IDPRO;
+
+     IDPRO NOMPRO                                                                                                                                     
+---------- ----------                                                                                                                                 
+         1 Chocolat                                                                                                                                   
+         2 Purée                                                                                                                                      
+
+SQL> SET echo OFF
+'Resultat de la requete sans Distinct'
+SQL> @produitsCommandesSansDistinct.sql
+SQL> -- ============================================================================
+SQL> -- Fichier 	 : produitsCommandesSansDistinct.sql
+SQL> -- Auteur		 : Tania OLIVIA
+SQL> -- Date		 : 6 Decembre 2019
+SQL> -- Base			     : Surgeles
+SQL> -- Role		 : La rêquete sans DISTINCT
+SQL> -- ============================================================================
+SQL> 
+SQL> SELECT L.IDPRO, P.NOMPRO
+  2  FROM LIGNE_COMMANDE L, PRODUIT P
+  3  WHERE L.IDPRO = P.IDPRO;
+
+     IDPRO NOMPRO                                                                                                                                     
+---------- ----------                                                                                                                                 
+         1 Chocolat                                                                                                                                   
+         1 Chocolat                                                                                                                                   
+         2 Purée                                                                                                                                      
+
+SQL> SET echo OFF

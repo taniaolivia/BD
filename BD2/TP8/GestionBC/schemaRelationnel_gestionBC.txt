@@ -1,0 +1,48 @@
+-- ==========================
+-- fichier 	: schemaRelationnel_gestionBC.txt
+-- base 	: Gestion BC
+-- auteur   : Tania OLIVIA
+-- date 	: 16/04/2020
+-- role 	: créer les schémas rélationnels de la gestion BC
+-- projet 	: Gestion BC
+-- resultat dans : //
+-- ==========================
+
+--------------------------------------------
+------------Schéma Rélationnel--------------
+--------------------------------------------
+
+CLIENT(NUMCLIENT, NOMCLIENT, ADRESSE, TEL)
+   - clé primaire : NUMCLIENT (Règle R1)
+
+
+EMPLOYE(NUMEMP, NOMEMP)
+   - clé primaire : NUMEMP (Règle R1)
+
+  
+DROIT_SIGNATURE(#NUMCLIENT, #NUMCOMPTE_COURANT, EMPLOYE#, DROIT)
+   - clé primaire : NUMCLIENT, NUMCOMPTE_COURANT (Règle R3)
+   - dépendance de référence : DROIT_SIGNATURE.NUMCLIENT référence CLIENT.NUMCLIENT (Règle R3)
+                               DROIT_SIGNATURE.NUMCOMPTE_COURANT référence COMPTE_COURANT.NUMCOMPTE_COURANT (Règle R3)
+                               DROIT_SIGNATURE.EMPLOYE référence EMPLOYE.NUMEMP (Règle R2)
+
+
+COMPTE(NUMCOMPTE, SOLDE, DATE_OUVERTURE, PROPRIETAIRE#)
+   - clé primaire : NUMCOMPTE (Règle R1)
+   - dépendance de référence : COMPTE.PROPRIETAIRE référence CLIENT.NUMCLIENT (Règle R2)
+
+                               
+COMPTE_COURANT(NUMCOMPTE_COURANT#, NB_OP_CB)
+   - clé primaire : NUMCOMPTE_COURANT (Règle R5)
+   - dépendance de référence : COMPTE_COURANT.NUMCOMPTE_COURANT référence COMPTE.NUMCOMPTE (Règle R5)
+
+             
+COMPTE_EPARGNE(NUMCOMPTE_EPARGNE#, TX_INTERNET)
+   - clé primaire : ID_EMPLOYE (Règle R5)
+   - dépendance de référence : COMPTE_EPARGNE.NUMCOMPTE_EPARGNE référence COMPTE.NUMCOMPTE (Règle R5)
+   
+
+MOUVEMENT(ID_MOUVEMENT, MONTANT, NUMCLIENT#, NUMCOMPTE_COURANT#, DATEOP)
+   - clé primaire : ID_MOUVEMENT (Règle R3)
+   - dépendance de référence : MOUVEMENT.NUMCOMPTE_COURANT référence COMPTE_COURANT.NUMCOMPTE_COURANT (Règle R3)
+                               MOUVEMENT.NUMCOMPTE_COURANT référence CLIENT.NUMCLIENT (Règle R3)

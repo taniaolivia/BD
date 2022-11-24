@@ -1,0 +1,63 @@
+SQL> 
+SQL> -- ============================================================================
+SQL> -- A completer
+SQL> -- ============================================================================
+SQL> 
+SQL> DROP TYPE typeINST FORCE;
+
+Type abandonné.
+
+SQL> CREATE TYPE typeINST AS OBJECT(
+  2  	 nomsoft     VARCHAR(20),
+  3  	 noposte     NUMBER,
+  4  	 nomsalle    VARCHAR(50),
+  5  	 dateaffect  DATE,
+  6  	 etatinstall VARCHAR(20));
+  7  /
+
+Type créé.
+
+SQL> /
+CREATE TYPE typeINST AS OBJECT(
+            *
+ERREUR à la ligne 1 :
+ORA-00955: ce nom d'objet existe déjà 
+
+
+SQL> DROP TYPE typeListeINST FORCE;
+
+Type abandonné.
+
+SQL> CREATE TYPE typeListeINST IS TABLE OF typeINST;
+  2  /
+
+Type créé.
+
+SQL> CREATE OR REPLACE FUNCTION listeInstallationAffecte(
+  2  	 V_login IN technicien.login%TYPE,
+  3  	 V_dateaffect IN tolivia_installation.dateaffect%TYPE
+  4  )
+  5  RETURN typeListeINST PIPELINED AS
+  6  CURSOR cur_listeINST IS
+  7  	     SELECT DISTINCT l.nomsoft, p.noposte, s.nomsalle, i.dateaffect, i.etatinstall
+  8  	     FROM logiciel l, tolivia_installation i, salle s, poste p
+  9  	     WHERE p.noposte = i.poste
+ 10  	     AND s.nosalle = p.salle
+ 11  	     AND l.nosoft = i.soft;
+ 12  BEGIN
+ 13  	 FOR cur_ligne IN cur_ListeINST LOOP
+ 14  	     PIPE ROW (typeINST (cur_ligne.nomsoft, cur_ligne.noposte, cur_ligne.nomsalle, cur_ligne.dateaffect, cur_ligne.etatinstall));
+ 15  	 END LOOP;
+ 16  	 RETURN;
+ 17  END;
+ 18  /
+
+Fonction créée.
+
+SQL> 
+SQL> 
+SQL> -- ============================================================================
+SQL> -- Fin à completer
+SQL> -- ============================================================================
+SQL> 
+SQL> set echo off

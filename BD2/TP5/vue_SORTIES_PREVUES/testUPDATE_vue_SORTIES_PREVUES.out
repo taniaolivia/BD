@@ -1,0 +1,175 @@
+SQL> --=============================================================================
+SQL> -- Etat de la base avant UPDATE
+SQL> --=============================================================================
+SQL> set echo off
+Contenu de la table Bateau Passage :
+=================================
+
+no rows selected
+
+Contenu de la table Bateau Resident:
+=================================
+
+ ID_BATRES CODPORT    NOMBAT         ID_MOD   EMPL_AFF    ID_PROP                                                                                     
+---------- ---------- ---------- ---------- ---------- ----------                                                                                     
+         1 AA         LONY                1          1          1                                                                                     
+         2 AA         KONY                1          2          2                                                                                     
+
+Contenu de la table Emplacement:
+=================================
+
+   ID_EMPL BASSIN     P     EMPLNO  TYPE_EMPL                                                                                                         
+---------- ---------- - ---------- ----------                                                                                                         
+         1 Gorgey     G          1          1                                                                                                         
+         2 Cookie     C          2          2                                                                                                         
+
+Contenu de la table Emplacement Libre:
+=================================
+
+   ID_EMPL DEB_LIBRE  FIN_LIBRE   TYPE_EMPL                                                                                                           
+---------- ---------- ---------- ----------                                                                                                           
+         1 10/01/2019 25/01/2019          1                                                                                                           
+         2 11/12/2018 31/12/2018          2                                                                                                           
+
+Contenu de la table Modele:
+=================================
+
+    ID_MOD CODMOD     CONSTRUCT       LONGR       LARG     TIRANT                                                                                     
+---------- ---------- ---------- ---------- ---------- ----------                                                                                     
+         1 FFFFF      Jontare         14.33      16.43       9.77                                                                                     
+
+Contenu de la table Port:
+=================================
+
+CODPORT    VILLE            CODPOSTAL                                                                                                                 
+---------- --------------- ----------                                                                                                                 
+AA         LA ROCHELLE          17000                                                                                                                 
+
+Contenu de la table Proprietaire:
+=================================
+
+   ID_PROP NOMPROP    ADRESSE            VILLE            CODPOSTAL TEL_PORTABLE                                                                      
+---------- ---------- ------------------ --------------- ---------- ---------------                                                                   
+         1 Jean       24 RUE DE NERVEGE  LA ROCHELLE          17000 713452312                                                                         
+         2 Nilo       18 RUE DE HILL     LILLE                50937 456823912                                                                         
+
+Contenu de la table Sortie:
+=================================
+
+ ID_SORTIE CODPORT    NOMBAT     DATSORTPRE DATSORTREL DATRETPREV DATRETRELL EFF                                                                      
+---------- ---------- ---------- ---------- ---------- ---------- ---------- ---                                                                      
+         1 AA         LONY       12/12/2018            10/01/2019            PRV                                                                      
+         2 AA         KONY       11/12/2018            18/01/2019            PRV                                                                      
+
+Contenu de la table Type Emplacemment:
+=================================
+
+ TYPE_EMPL      LONGR       LARG    PROFOND                                                                                                           
+---------- ---------- ---------- ----------                                                                                                           
+         1      20.33      12.43      12.32                                                                                                           
+         2      49.33      45.43      54.32                                                                                                           
+
+SQL> -- ============================================================================
+SQL> --  Tester UPDATE d'un nuplet à travers la vue vue_SORTIES_PREVUES
+SQL> -- ============================================================================
+SQL> -- Contenu de la vue avant UPDATE
+SQL> select CODPORT, NOMBAT, DATSORTPREV, DATRETPREV
+  2  from   vue_SORTIES_PREVUES;
+
+CODPORT    NOMBAT     DATSORTPRE DATRETPREV                                                                                                           
+---------- ---------- ---------- ----------                                                                                                           
+AA         LONY       12/12/2018 10/01/2019                                                                                                           
+AA         KONY       11/12/2018 18/01/2019                                                                                                           
+
+SQL> 
+SQL> -- Update d'un nuplet à travers la vue vue_SORTIES_PREVUES
+SQL> update vue_SORTIES_PREVUES
+  2  set DATRETPREV = DATRETPREV + 10
+  3  where UPPER(CODPORT) = UPPER('AA')
+  4  and UPPER(NOMBAT) = UPPER('LONY');
+
+1 row updated.
+
+SQL> 
+SQL> -- Contenu de la vue apres UPDATE
+SQL> select CODPORT, NOMBAT, DATSORTPREV, DATRETPREV
+  2  from   vue_SORTIES_PREVUES;
+
+CODPORT    NOMBAT     DATSORTPRE DATRETPREV                                                                                                           
+---------- ---------- ---------- ----------                                                                                                           
+AA         LONY       12/12/2018 20/01/2019                                                                                                           
+AA         KONY       11/12/2018 18/01/2019                                                                                                           
+
+SQL> 
+SQL> set echo off
+SQL> --=============================================================================
+SQL> -- Etat de la base apres UPDATE
+SQL> --=============================================================================
+SQL> set echo off
+Contenu de la table Bateau Passage :
+=================================
+
+no rows selected
+
+Contenu de la table Bateau Resident:
+=================================
+
+ ID_BATRES CODPORT    NOMBAT         ID_MOD   EMPL_AFF    ID_PROP                                                                                     
+---------- ---------- ---------- ---------- ---------- ----------                                                                                     
+         1 AA         LONY                1          1          1                                                                                     
+         2 AA         KONY                1          2          2                                                                                     
+
+Contenu de la table Emplacement:
+=================================
+
+   ID_EMPL BASSIN     P     EMPLNO  TYPE_EMPL                                                                                                         
+---------- ---------- - ---------- ----------                                                                                                         
+         1 Gorgey     G          1          1                                                                                                         
+         2 Cookie     C          2          2                                                                                                         
+
+Contenu de la table Emplacement Libre:
+=================================
+
+   ID_EMPL DEB_LIBRE  FIN_LIBRE   TYPE_EMPL                                                                                                           
+---------- ---------- ---------- ----------                                                                                                           
+         1 10/01/2019 25/01/2019          1                                                                                                           
+         2 11/12/2018 31/12/2018          2                                                                                                           
+
+Contenu de la table Modele:
+=================================
+
+    ID_MOD CODMOD     CONSTRUCT       LONGR       LARG     TIRANT                                                                                     
+---------- ---------- ---------- ---------- ---------- ----------                                                                                     
+         1 FFFFF      Jontare         14.33      16.43       9.77                                                                                     
+
+Contenu de la table Port:
+=================================
+
+CODPORT    VILLE            CODPOSTAL                                                                                                                 
+---------- --------------- ----------                                                                                                                 
+AA         LA ROCHELLE          17000                                                                                                                 
+
+Contenu de la table Proprietaire:
+=================================
+
+   ID_PROP NOMPROP    ADRESSE            VILLE            CODPOSTAL TEL_PORTABLE                                                                      
+---------- ---------- ------------------ --------------- ---------- ---------------                                                                   
+         1 Jean       24 RUE DE NERVEGE  LA ROCHELLE          17000 713452312                                                                         
+         2 Nilo       18 RUE DE HILL     LILLE                50937 456823912                                                                         
+
+Contenu de la table Sortie:
+=================================
+
+ ID_SORTIE CODPORT    NOMBAT     DATSORTPRE DATSORTREL DATRETPREV DATRETRELL EFF                                                                      
+---------- ---------- ---------- ---------- ---------- ---------- ---------- ---                                                                      
+         1 AA         LONY       12/12/2018            20/01/2019            PRV                                                                      
+         2 AA         KONY       11/12/2018            18/01/2019            PRV                                                                      
+
+Contenu de la table Type Emplacemment:
+=================================
+
+ TYPE_EMPL      LONGR       LARG    PROFOND                                                                                                           
+---------- ---------- ---------- ----------                                                                                                           
+         1      20.33      12.43      12.32                                                                                                           
+         2      49.33      45.43      54.32                                                                                                           
+

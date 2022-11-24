@@ -1,0 +1,189 @@
+Schéma de la relation Client :
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ IDCLI                                     NOT NULL NUMBER(4)
+ NOMCLI                                    NOT NULL VARCHAR2(40)
+ PRENOMCLI                                 NOT NULL VARCHAR2(40)
+ TELCLI                                    NOT NULL CHAR(10)
+ MAILCLI                                   NOT NULL VARCHAR2(80)
+ ADRCLI                                    NOT NULL VARCHAR2(255)
+
+Clés primaires et uniques de Client
+
+C CNAME           CCOLUMN                                                       
+- --------------- ----------                                                    
+P PK_CLIENT       IDCLI                                                         
+U U_MAIL          MAILCLI                                                       
+
+Clés étrangères de Client
+
+no rows selected
+
+Constraintes CHECK de Client
+
+C CNAME           CCOLUMN    COND                                               
+- --------------- ---------- ----------------------------                       
+C SYS_C00321390   ADRCLI     "ADRCLI" IS NOT NULL                               
+C SYS_C00321389   MAILCLI    "MAILCLI" IS NOT NULL                              
+C SYS_C00321388   TELCLI     "TELCLI" IS NOT NULL                               
+C SYS_C00321387   PRENOMCLI  "PRENOMCLI" IS NOT NULL                            
+C SYS_C00321386   NOMCLI     "NOMCLI" IS NOT NULL                               
+C SYS_C00321385   IDCLI      "IDCLI" IS NOT NULL                                
+
+6 rows selected.
+
+Schéma de la relation Billet :
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ IDBILLET                                  NOT NULL NUMBER(4)
+ CODEBILLET                                NOT NULL CHAR(15)
+ IDEVT                                     NOT NULL NUMBER(4)
+ IDCLI                                     NOT NULL NUMBER(4)
+ IDTARIF                                   NOT NULL NUMBER(4)
+ IDSITERESA                                         NUMBER(4)
+
+Clés primaires et uniques de Billet
+
+C CNAME           CCOLUMN                                                       
+- --------------- ----------                                                    
+P PK_BILLET       IDBILLET                                                      
+U U_CODEBILLET    CODEBILLET                                                    
+
+Clés étrangères de Billet
+
+C CNAME           CCOLUMN    RTABLE     RCOLUMN                                 
+- --------------- ---------- ---------- ----------                              
+R FK_BILTARIF     IDTARIF    BILLET     IDTARIF                                 
+R FK_BILST        IDSITERESA BILLET     IDSITERESA                              
+R FK_BILEVT       IDEVT      BILLET     IDEVT                                   
+R FK_BILCLI       IDCLI      BILLET     IDCLI                                   
+
+Constraintes CHECK de Billet
+
+C CNAME           CCOLUMN    COND                                               
+- --------------- ---------- ----------------------------                       
+C SYS_C00321393   IDBILLET   "IDBILLET" IS NOT NULL                             
+C SYS_C00321394   CODEBILLET "CODEBILLET" IS NOT NULL                           
+C SYS_C00321395   IDEVT      "IDEVT" IS NOT NULL                                
+C SYS_C00321396   IDCLI      "IDCLI" IS NOT NULL                                
+C SYS_C00321397   IDTARIF    "IDTARIF" IS NOT NULL                              
+
+Schéma de la relation Evenement :
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ IDEVT                                     NOT NULL NUMBER(4)
+ TITREEVT                                  NOT NULL VARCHAR2(50)
+ DATEEVT                                   NOT NULL DATE
+ TYPEEVT                                   NOT NULL CHAR(7)
+ IDSALLE                                   NOT NULL NUMBER(4)
+
+Clés primaires et uniques de Evenement
+
+C CNAME           CCOLUMN                                                       
+- --------------- ----------                                                    
+P PK_EVT          IDEVT                                                         
+
+Clés étrangères de Evenement
+
+C CNAME           CCOLUMN    RTABLE     RCOLUMN                                 
+- --------------- ---------- ---------- ----------                              
+R FK_SALLEEVT     IDSALLE    EVENEMENT  IDSALLE                                 
+
+Constraintes CHECK de Evenement
+
+C CNAME           CCOLUMN    COND                                               
+- --------------- ---------- ----------------------------                       
+C SYS_C00321400   IDEVT      "IDEVT" IS NOT NULL                                
+C SYS_C00321401   TITREEVT   "TITREEVT" IS NOT NULL                             
+C SYS_C00321402   DATEEVT    "DATEEVT" IS NOT NULL                              
+C SYS_C00321403   TYPEEVT    "TYPEEVT" IS NOT NULL                              
+C SYS_C00321404   IDSALLE    "IDSALLE" IS NOT NULL                              
+C CHK_TYPEEVT     TYPEEVT    TYPEEVT IN('concert ', 'spor                       
+                             t', 'comedie', 'enfant')                           
+                                                                                
+
+6 rows selected.
+
+Schéma de la relation Salle :
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ IDSALLE                                   NOT NULL NUMBER(4)
+ NOMSALLE                                  NOT NULL VARCHAR2(50)
+ ADRSALLE                                  NOT NULL VARCHAR2(255)
+
+Clés primaires et uniques de Salle
+
+C CNAME           CCOLUMN                                                       
+- --------------- ----------                                                    
+P PK_SALLE        IDSALLE                                                       
+
+Clés étrangères de Salle
+
+no rows selected
+
+Constraintes CHECK de Salle
+
+C CNAME           CCOLUMN    COND                                               
+- --------------- ---------- ----------------------------                       
+C SYS_C00321409   ADRSALLE   "ADRSALLE" IS NOT NULL                             
+C SYS_C00321408   NOMSALLE   "NOMSALLE" IS NOT NULL                             
+C SYS_C00321407   IDSALLE    "IDSALLE" IS NOT NULL                              
+
+Schéma de la relation Tarif :
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ IDTARIF                                   NOT NULL NUMBER(4)
+ PRIX                                      NOT NULL NUMBER(5,2)
+ TYPETARIF                                 NOT NULL CHAR(8)
+
+Clés primaires et uniques de Tarif
+
+C CNAME           CCOLUMN                                                       
+- --------------- ----------                                                    
+P PK_TARIF        IDTARIF                                                       
+
+Clés étrangères de Tarif
+
+no rows selected
+
+Constraintes CHECK de Tarif
+
+C CNAME           CCOLUMN    COND                                               
+- --------------- ---------- ----------------------------                       
+C SYS_C00321411   IDTARIF    "IDTARIF" IS NOT NULL                              
+C SYS_C00321412   PRIX       "PRIX" IS NOT NULL                                 
+C SYS_C00321413   TYPETARIF  "TYPETARIF" IS NOT NULL                            
+C CHK_PRIX        PRIX       PRIX>=0                                            
+C CHK_TYPETARIF   TYPETARIF  TYPETARIF IN('etudiant ', 'p                       
+                             lein', 'enfant')                                   
+                                                                                
+
+Schéma de la relation SiteResa :
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ IDSITERESA                                NOT NULL NUMBER(4)
+ NOMSITERESA                               NOT NULL VARCHAR2(50)
+ URLSITERESA                               NOT NULL VARCHAR2(80)
+
+Clés primaires et uniques de SiteResa
+
+C CNAME           CCOLUMN                                                       
+- --------------- ----------                                                    
+P PK_SITERESA     IDSITERESA                                                    
+
+Clés étrangères de SiteResa
+
+no rows selected
+
+Constraintes CHECK de SiteResa
+
+C CNAME           CCOLUMN    COND                                               
+- --------------- ---------- ----------------------------                       
+C SYS_C00321419   URLSITERES "URLSITERESA" IS NOT NULL                          
+                  A                                                             
+                                                                                
+C SYS_C00321418   NOMSITERES "NOMSITERESA" IS NOT NULL                          
+                  A                                                             
+                                                                                
+C SYS_C00321417   IDSITERESA "IDSITERESA" IS NOT NULL                           
+

@@ -1,0 +1,82 @@
+fichier resultat du test : testCommandesAvecTousLesDesserts.out
+Contenu de la base :
+Contenu de la table Client :
+=================================
+
+     IDCLI NOMCLI     PRENOMCLI      TELCLI MAILCLI            ADRCLI                                                                                 
+---------- ---------- ---------- ---------- ------------------ ------------                                                                           
+         1 MARTIN     Jean       ########## martin@example.org La Rochelle                                                                            
+
+Contenu de la table Commande:
+=================================
+
+     IDCOM      IDCLI DATECOM    DATERECEPP                                                                                                           
+---------- ---------- ---------- ----------                                                                                                           
+         1          1 01/10/2013 20/10/2013                                                                                                           
+         2          1 01/10/2013 25/10/2013                                                                                                           
+         3          1 05/10/2013 20/11/2013                                                                                                           
+         4          1 05/10/2013 20/11/2013                                                                                                           
+
+Contenu de la table Ligne_Commande:
+=================================
+
+  IDLIGCOM      IDCOM      IDPRO     QTECOM   PRIXUNIT                                                                                                
+---------- ---------- ---------- ---------- ----------                                                                                                
+         1          1          1          5        3,4                                                                                                
+         2          1          2          5        3,4                                                                                                
+         3          1          3          5        3,4                                                                                                
+         4          2          1          5        3,4                                                                                                
+         5          2          2          5        3,4                                                                                                
+         6          3          1          5        3,4                                                                                                
+         7          3          3          5        3,4                                                                                                
+         8          4          3          5        3,4                                                                                                
+         9          4          4          5        3,4                                                                                                
+
+9 lignes sélectionnées.
+
+Contenu de la table Produit:
+=================================
+
+     IDPRO NOMPRO     TYPEPRO                                                                                                                         
+---------- ---------- ---------------------                                                                                                           
+         1 a          DESSERT                                                                                                                         
+         2 b          DESSERT                                                                                                                         
+         3 c          VIANDE                                                                                                                          
+         4 d          POISSON                                                                                                                         
+
+Contenu de la table Livraison:
+=================================
+
+aucune ligne sélectionnée
+
+Contenu de la table Livreur:
+=================================
+
+aucune ligne sélectionnée
+
+'Resultat de la requete'
+SQL> @commandesAvecTousLesDesserts.sql
+SQL> -- ============================================================================
+SQL> -- Fichier 	 : commandesAvecTousLesDesserts.sql
+SQL> -- Auteur		 : Tania OLIVIA
+SQL> -- Date		 : 27 Novembre 2019
+SQL> -- Base		 : Surgeles
+SQL> -- Role		 : Quelles sont les commandes qui possèdent tous les produits de type « dessert » ?
+SQL> -- ============================================================================
+SQL> 
+SQL> SELECT DISTINCT L.IDCOM
+  2  FROM LIGNE_COMMANDE L
+  3  WHERE NOT EXISTS (SELECT *
+  4  		      FROM PRODUIT P
+  5  		      WHERE P.TYPEPRO = 'DESSERT'
+  6  		      AND NOT EXISTS (SELECT *
+  7  				      FROM LIGNE_COMMANDE B
+  8  				      WHERE B.IDPRO = P.IDPRO
+  9  				      AND B.IDCOM = L.IDCOM));
+
+     IDCOM                                                                                                                                            
+----------                                                                                                                                            
+         1                                                                                                                                            
+         2                                                                                                                                            
+
+SQL> SET echo OFF

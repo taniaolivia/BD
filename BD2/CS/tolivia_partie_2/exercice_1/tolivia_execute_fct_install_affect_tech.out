@@ -1,0 +1,39 @@
+SQL> 
+SQL> -- ============================================================================
+SQL> -- A completer
+SQL> -- ============================================================================
+SQL> 
+SQL> SET VERIFY OFF;
+SQL> VARIABLE V_login VARCHAR2(8)
+SQL> VARIABLE V_dateaffect DATE
+Syntaxe : VAR[IABLE] [ <variable> [ NUMBER | CHAR | CHAR (n [CHAR|BYTE]) |
+                    VARCHAR2 (n [CHAR|BYTE]) | NCHAR | NCHAR (n) |
+                    NVARCHAR2 (n) | CLOB | NCLOB | BLOB | BFILE
+                    REFCURSOR | BINARY_FLOAT | BINARY_DOUBLE ] ]
+SQL> ACCEPT V_login_lu PROMPT 'Login : ';
+Login : dtexier
+SQL> ACCEPT V_dateaffect_lu PROMPT 'Date souhaitée : ';
+Date souhaitée : 26/05/2020
+SQL> BEGIN
+  2   :V_login:= &V_login_lu;
+  3   :V_dateaffect:= &V_dateaffect_lu;
+  4   END;
+  5  /
+SP2-0552: Variable attachée "V_DATEAFFECT" non déclarée.
+SQL> PROMPT =========================================================
+=========================================================
+SQL> PROMPT Liste des installations affectées à un technicien connu :
+Liste des installations affectées à un technicien connu :
+SQL> PROMPT =========================================================
+=========================================================
+SQL> 
+SQL> SELECT * FROM TABLE (listeEmplacementsLibres(:V_login, :V_dateaffect));
+SP2-0552: Variable attachée "V_DATEAFFECT" non déclarée.
+SQL> /
+SP2-0552: Variable attachée "V_DATEAFFECT" non déclarée.
+SQL> 
+SQL> -- ============================================================================
+SQL> -- Fin à completer
+SQL> -- ============================================================================
+SQL> 
+SQL> set echo off

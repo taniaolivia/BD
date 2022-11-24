@@ -1,0 +1,33 @@
+USER
+--------------------------------------------------------------------------------
+TOLIVIA
+
+Il affice l'utilisateur connecté
+
+BANNER
+--------------------------------------------------------------------------------
+Oracle Database 12c Enterprise Edition Release 12.1.0.2.0 - 64bit Production
+PL/SQL Release 12.1.0.2.0 - Production
+CORE    12.1.0.2.0      Production
+TNS for Linux: Version 12.1.0.2.0 - Production
+NLSRTL Version 12.1.0.2.0 - Production
+
+Il affiche la version du SGBD Orale 
+
+NAME                        CREATED
+--------------------------- --------
+INFO1                       26/09/17
+
+Il affiche qu'on est en INFO1 crée au 29 septembre 2017
+
+SYSDATE
+--------
+10/10/19
+
+Il affiche la date du SGBD
+
+SYSDATE
+----------
+10-10-2019
+
+Il change et affiche la forme de DD/MM/YY à DD-MM-YYYY 

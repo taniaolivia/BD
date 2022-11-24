@@ -1,0 +1,37 @@
+fichier resultat du test : test_ddl_test1.out
+SQL> -- ============================================================================
+SQL> -- Suppression des nuplet de la table
+SQL> -- ============================================================================
+SQL> 
+SQL> set echo off
+
+3 lignes supprimées.
+
+SQL> 
+SQL> -- ============================================================================
+SQL> -- Mise en oeuvre de la séquence
+SQL> -- ============================================================================
+SQL> 
+SQL> set echo off
+
+1 ligne créée.
+
+
+1 ligne créée.
+
+
+1 ligne créée.
+
+SQL> 
+SQL> -- ============================================================================
+SQL> -- Affiche le contenu de la table
+SQL> -- ============================================================================
+SQL> 
+SQL> set echo off
+
+        ID DESCRIPTION                                                          
+---------- ----------------------------------------                             
+         1 description only                                                     
+         2 ID = NULL and description                                            
+       999 ID = 999 and description                                             
+

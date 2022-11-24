@@ -1,0 +1,72 @@
+fichier resultat du test : testMaxProCom.out
+Contenu de la base :
+Contenu de la table Client :
+=================================
+
+     IDCLI NOMCLI     PRENOMCLI      TELCLI MAILCLI            ADRCLI                                                                                 
+---------- ---------- ---------- ---------- ------------------ ------------                                                                           
+         1 MARTIN     Jean       ########## martin@example.org La Rochelle                                                                            
+
+Contenu de la table Commande:
+=================================
+
+     IDCOM      IDCLI DATECOM    DATERECEPP                                                                                                           
+---------- ---------- ---------- ----------                                                                                                           
+         1          1 01/10/2013 20/10/2013                                                                                                           
+         2          1 01/10/2013 20/10/2013                                                                                                           
+
+Contenu de la table Ligne_Commande:
+=================================
+
+  IDLIGCOM      IDCOM      IDPRO     QTECOM   PRIXUNIT                                                                                                
+---------- ---------- ---------- ---------- ----------                                                                                                
+         1          1          1          5        3,4                                                                                                
+         2          1          2         10        3,4                                                                                                
+         3          2          1          2        3,4                                                                                                
+         4          2          2          3        3,4                                                                                                
+         5          2          3          4        3,4                                                                                                
+
+Contenu de la table Produit:
+=================================
+
+     IDPRO NOMPRO     TYPEPRO                                                                                                                         
+---------- ---------- ---------------------                                                                                                           
+         1 a          DESSERT                                                                                                                         
+         2 b          DESSERT                                                                                                                         
+         3 c          DESSERT                                                                                                                         
+
+Contenu de la table Livraison:
+=================================
+
+aucune ligne sélectionnée
+
+Contenu de la table Livreur:
+=================================
+
+aucune ligne sélectionnée
+
+'Resultat de la requete'
+SQL> @maxProCom.sql
+SQL> -- ============================================================================
+SQL> -- Fichier 	 : maxProCom.sql
+SQL> -- Auteur		 : Tania OLIVIA
+SQL> -- Date		 : 27 Novembre 2019
+SQL> -- Base		 : Surgeles
+SQL> -- Role		 : Quel est le nombre maximum de produit commandés par commande ?
+SQL> -- ============================================================================
+SQL> 
+SQL> SELECT DISTINCT MAX(SUM(QTECOM)) AS MAXPROCOM
+  2  FROM LIGNE_COMMANDE S, COMMANDE C
+  3  WHERE EXISTS (SELECT *
+  4  		       FROM PRODUIT P, LIGNE_COMMANDE B, COMMANDE D
+  5  		       WHERE B.IDPRO = P.IDPRO
+  6  		       AND B.QTECOM = S.QTECOM
+  7  		       AND D.IDCOM = C.IDCOM
+  8  );
+SELECT DISTINCT MAX(SUM(QTECOM)) AS MAXPROCOM
+                    *
+ERREUR à la ligne 1 :
+ORA-00978: fonction de groupe imbriquée sans clause GROUP BY 
+
+
+SQL> SET echo OFF

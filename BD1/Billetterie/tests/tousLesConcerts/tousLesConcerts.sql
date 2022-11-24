@@ -1,0 +1,17 @@
+-- ____________________________________________________________________________
+-- Fichier          : tousLesConcerts.sql
+-- Auteur           : C. Faucher
+-- Date             : Janvier 2019
+-- Base				: Billetterie
+-- Role             : Q8. Qui a acheté des billets pour
+--                    tous les événements de type "concert" ?
+-- ____________________________________________________________________________
+-- Hypothèses si nécessaire :
+-- ____________________________________________________________________________
+-- Résultat attendu :
+--     IDCLI NOMCLI     PRENOMCLI                                                 
+------------ ---------- ----------                                                
+--         2 DUPONT     Charles                                                   
+--         1 MARTIN     Jean 
+--____________________________________________________________________________
+-- Requête SQL :

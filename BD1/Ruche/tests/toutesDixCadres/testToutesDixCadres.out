@@ -1,0 +1,66 @@
+fichier resultat du test : testToutesDixCadres.out
+Contenu de la base :
+Contenu de la table Apiculteur :
+=================================
+
+     IDAPI NOMAPI     PRENOMAPI  TELAPI          MAILAPI              ADRAPI                                                      
+---------- ---------- ---------- --------------- -------------------- ------------                                                
+         1 DUPONT     Jean       0606060606      dupont@example.org   La Rochelle                                                 
+         2 VANILLE    Charles    0607070707      vanille@example.org  La Rochelle                                                 
+         3 LALLIC     Tituan     0707070707      lallic@example.org   La Rochelle                                                 
+
+Contenu de la table Rucher:
+=================================
+
+  IDRUCHER TYPEMIEL                                                                                                               
+---------- ------------------                                                                                                     
+         1 acacia                                                                                                                 
+         2 colza                                                                                                                  
+         3 sapin                                                                                                                  
+         4 thym                                                                                                                   
+
+Contenu de la table Ruche:
+=================================
+
+      IDRU    NBCADRE      IDAPI   IDRUCHER                                                                                       
+---------- ---------- ---------- ----------                                                                                       
+         1          1          1          1                                                                                       
+         2         10          2          2                                                                                       
+         3         11          3          3                                                                                       
+         4          5          3          4                                                                                       
+         5         15          3          1                                                                                       
+
+Contenu de la table Recolte:
+=================================
+
+      IDRU DATEREC         MASSE                                                                                                  
+---------- ---------- ----------                                                                                                  
+         1 01/12/2018          5                                                                                                  
+         2 23/03/2018          4                                                                                                  
+         3 01/10/2018          9                                                                                                  
+         4 02/04/2018          8                                                                                                  
+         5 25/05/2018          6                                                                                                  
+
+'Resultat de la requete'
+SQL> @toutesDixCadres.sql
+SQL> -- ============================================================================
+SQL> -- Fichier 	 : moins5euros.sql
+SQL> -- Auteur		 : Tania OLIVIA
+SQL> -- Date		 : 18 Novembre 2019
+SQL> -- Base			     : Surgeles
+SQL> -- Role		 : La requête avec IN pour connaître les commandes qui ne possèdent que des lignes
+SQL> -- 		   de commande dont les prix unitaires des produits sont inférieurs à 5
+SQL> -- ============================================================================
+SQL> 
+SQL> SELECT RU.IDRUCHER
+  2  FROM RUCHER RU, RUCHE R
+  3  WHERE RU.IDRUCHER = R.IDRUCHER
+  4  AND R.NBCADRE >= 10;
+
+  IDRUCHER                                                                                                                        
+----------                                                                                                                        
+         2                                                                                                                        
+         3                                                                                                                        
+         1                                                                                                                        
+
+SQL> SET echo OFF

@@ -1,0 +1,59 @@
+fichier resultat du test : testRelationContrat_DV.out
+Contenu de la base :
+SQL> @afficher_contenu_base_portPlaisance.sql
+SQL> 
+SQL> --==========================
+SQL> --fichier		 : afficher_contenu_base_portPlaisance.sql
+SQL> --base		 : port plaisance
+SQL> --auteur(s)	 : Tania OLIVIA
+SQL> --date		 : 31/01/2020
+SQL> --role		 : Afficher l’ensemble du contenu des tables de la base de données
+SQL> --projet		 : port plaisance
+SQL> --resultat dans	 :  // à renseigner si nécessaire
+SQL> --==========================
+SQL> 
+SQL> 
+SQL> PROMPT Contenu de la table Emplacement:
+Contenu de la table Emplacement:
+SQL> PROMPT =================================
+=================================
+SQL> SELECT *
+  2  FROM EMPLACEMENT;
+
+   ID_EMPL BASSIN     P     EMPLNO  TYPE_EMPL                                                                                                         
+---------- ---------- - ---------- ----------                                                                                                         
+         1 GO         G          1          1                                                                                                         
+         2 JON        J          2          2                                                                                                         
+         3 RUT        R          3          3                                                                                                         
+
+SQL> 
+SQL> 
+SQL> PROMPT Contenu de la table Proprietaire:
+Contenu de la table Proprietaire:
+SQL> PROMPT =================================
+=================================
+SQL> SELECT *
+  2  FROM PROPRIETAIRE;
+
+   ID_PROP NOMPROP    ADRESSE            VILLE            CODPOSTAL TEL_PORTABLE                                                                      
+---------- ---------- ------------------ --------------- ---------- ---------------                                                                   
+         1 Yoshi      10 RUE DU NERVEGE  PARIS                92343 0932413132                                                                        
+         2 Kimmy      28 RUE DU CORDOUAN LA ROCHELLE          17000 0780915143                                                                        
+         3 Yummy      30 RUE DU TONUE    LILLE                52314 0780914231                                                                        
+
+SQL> 
+SQL> 
+SQL> PROMPT Contenu de la table Type Emplacemment:
+Contenu de la table Type Emplacemment:
+SQL> PROMPT =================================
+=================================
+SQL> SELECT *
+  2  FROM TYPE_EMPLACEMENT;
+
+ TYPE_EMPL      LONGR       LARG    PROFOND                                                                                                           
+---------- ---------- ---------- ----------                                                                                                           
+         1      10.23      57.23      12.34                                                                                                           
+         2       22.1       23.4       45.9                                                                                                           
+         3       32.1       12.4       23.2                                                                                                           
+
+SQL> set echo off

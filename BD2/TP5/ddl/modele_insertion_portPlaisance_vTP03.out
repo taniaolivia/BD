@@ -1,0 +1,116 @@
+fichier resultat du test : modele_insertion_portPlaisance_vTP03.out
+SQL> -- ============================================================================
+SQL> -- Suppression des nuplet de la table
+SQL> -- ============================================================================
+SQL> 
+SQL> set echo off
+
+0 rows deleted.
+
+
+0 rows deleted.
+
+
+0 rows deleted.
+
+
+0 rows deleted.
+
+SQL> 
+SQL> -- ============================================================================
+SQL> -- Mise en oeuvre de la séquence
+SQL> -- ============================================================================
+SQL> 
+SQL> set echo off
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+SQL> 
+SQL> -- ============================================================================
+SQL> -- Affiche le contenu de la table
+SQL> -- ============================================================================
+SQL> 
+SQL> set echo off
+
+   ID_PROP NOMPROP    ADRESSE            VILLE            CODPOSTAL TEL_PORTABLE                                                                      
+---------- ---------- ------------------ --------------- ---------- ---------------                                                                   
+         1 Jean       24 RUE DE NERVEGE  LA ROCHELLE          17000 713452312                                                                         
+         2 George     38 RUE DU CORDOUAN PARIS                90578 738904512                                                                         
+         3 Nilo       18 RUE DE HILL     LILLE                50937 456823912                                                                         
+
+
+ID_BATPASS CODPORT    NOMBAT     ARV       DEPART        ID_MOD NOMPROP    TEL_PORTABLE    ADRESSE              EMPL_AFF                              
+---------- ---------- ---------- --------- --------- ---------- ---------- --------------- ------------------ ----------                              
+         1 AA         LONY       20-JAN-19 26-JAN-19          1 Jean       0713452311      27 RUE DU CORDOUAN          3                              
+
+
+ ID_BATRES CODPORT    NOMBAT         ID_MOD   EMPL_AFF    ID_PROP                                                                                     
+---------- ---------- ---------- ---------- ---------- ----------                                                                                     
+         1 AA         HIONY               1          2          2                                                                                     
+         2 AA         KONY                1          4          3                                                                                     
+
+
+ ID_SORTIE CODPORT    NOMBAT     DATSORT   DATRET    EFF                                                                                              
+---------- ---------- ---------- --------- --------- ---                                                                                              
+         1 AA         KONY       11-DEC-18 18-JAN-19 EFF                                                                                              
+

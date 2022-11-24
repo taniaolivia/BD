@@ -1,0 +1,31 @@
+fichier resultat du test : testRelationContrat_DINV_uq.out
+SQL> -- ============================================================================
+SQL> -- Contenu de la table RelationContrat avant INSERT
+SQL> -- ============================================================================
+SQL> set echo off
+
+no rows selected
+
+SQL> -- ============================================================================
+SQL> -- Cas : 1
+SQL> -- L'integrité constrainte de la cle unique du DEBCONTRAT n'est pas valide
+SQL> -- ============================================================================
+SQL> set echo off
+
+1 row created.
+
+INSERT INTO CONTRAT(NUMCONTRAT, DATESIGNATURE, DEBCONTRAT, FINCONTRAT, TYPECONTRAT, CONTRACTANT, EMPLACEMENT)
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (TOLIVIA.FK_CONEMPL) violated - parent key not found 
+
+
+SQL> -- ============================================================================
+SQL> -- Contenu de la table RelationContrat apres INSERT
+SQL> -- ============================================================================
+SQL> set echo off
+
+NUMCONTRAT DATESIGNAT DEBCONTRAT FINCONTRAT TYPECONTRAT          CONTRACTANT EMPLACEMENT                                                              
+---------- ---------- ---------- ---------- -------------------- ----------- -----------                                                              
+         1 01/01/2020 02/01/2020            saisonnier                     1           1                                                              
+

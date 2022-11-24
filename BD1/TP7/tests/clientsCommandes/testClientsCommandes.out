@@ -1,0 +1,91 @@
+fichier resultat du test : testClientsCommandes.out
+Contenu de la base :
+Contenu de la table Client :
+=================================
+
+     IDCLI NOMCLI     PRENOMCLI      TELCLI MAILCLI            ADRCLI                                                                                 
+---------- ---------- ---------- ---------- ------------------ ------------                                                                           
+         1 MARTIN     Jean       ########## martin@example.org La Rochelle                                                                            
+         2 DUPONT     Jean       ########## dupont@example.org La Rochelle                                                                            
+         3 CAVIN      Pauline    ########## cavin@example.org  La Rochelle                                                                            
+
+Contenu de la table Commande:
+=================================
+
+     IDCOM      IDCLI DATECOM    DATERECEPP                                                                                                           
+---------- ---------- ---------- ----------                                                                                                           
+         1          1 01/09/2013 20/12/2013                                                                                                           
+         2          1 02/09/2013 20/12/2013                                                                                                           
+         3          2 01/09/2013 20/12/2013                                                                                                           
+
+Contenu de la table Ligne_Commande:
+=================================
+
+aucune ligne sélectionnée
+
+Contenu de la table Produit:
+=================================
+
+aucune ligne sélectionnée
+
+Contenu de la table Livraison:
+=================================
+
+aucune ligne sélectionnée
+
+Contenu de la table Livreur:
+=================================
+
+aucune ligne sélectionnée
+
+'Resultat de la requete avec une jointure externe'
+SQL> @clientsCommandes.sql
+SQL> -- ============================================================================
+SQL> -- Fichier 	 : clientsCommandes.sql
+SQL> -- Auteur		 : Tania OLIVIA
+SQL> -- Date		 : 6 Decembre 2019
+SQL> -- Base			     : Surgeles
+SQL> -- Role		 : La rêquete avec une jointure externe
+SQL> -- ============================================================================
+SQL> 
+SQL> SELECT C.IDCLI, C.NOMCLI, C.PRENOMCLI, D.IDCOM, D.DATECOM
+  2  FROM CLIENT C LEFT OUTER JOIN COMMANDE D
+  3  ON C.IDCLI = D.IDCLI;
+
+     IDCLI NOMCLI     PRENOMCLI       IDCOM DATECOM                                                                                                   
+---------- ---------- ---------- ---------- ----------                                                                                                
+         1 MARTIN     Jean                1 01/09/2013                                                                                                
+         1 MARTIN     Jean                2 02/09/2013                                                                                                
+         2 DUPONT     Jean                3 01/09/2013                                                                                                
+         3 CAVIN      Pauline                                                                                                                         
+
+SQL> SET echo OFF
+'Resultat de la requete avec UNION'
+SQL> @clientsCommandesUnion.sql
+SQL> -- ============================================================================
+SQL> -- Fichier 	 : clientsCommandesUnion.sql
+SQL> -- Auteur		 : Tania OLIVIA
+SQL> -- Date		 : 6 Decembre 2019
+SQL> -- Base			     : Surgeles
+SQL> -- Role		 : La rêquete avec UNION
+SQL> -- ============================================================================
+SQL> 
+SQL> SELECT C.IDCLI, C.NOMCLI, C.PRENOMCLI, D.IDCOM, D.DATECOM
+  2  FROM CLIENT C, COMMANDE D
+  3  WHERE C.IDCLI = D.IDCLI
+  4  UNION
+  5  SELECT C.IDCLI, C.NOMCLI, C.PRENOMCLI, NULL, NULL
+  6  FROM CLIENT C
+  7  WHERE NOT EXISTS (SELECT *
+  8  		       FROM COMMANDE D
+  9  		       WHERE C.IDCLI = D.IDCLI
+ 10  );
+
+     IDCLI NOMCLI     PRENOMCLI       IDCOM DATECOM                                                                                                   
+---------- ---------- ---------- ---------- ----------                                                                                                
+         1 MARTIN     Jean                1 01/09/2013                                                                                                
+         1 MARTIN     Jean                2 02/09/2013                                                                                                
+         2 DUPONT     Jean                3 01/09/2013                                                                                                
+         3 CAVIN      Pauline                                                                                                                         
+
+SQL> SET echo OFF

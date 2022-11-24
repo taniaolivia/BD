@@ -1,0 +1,91 @@
+fichier resultat du test : testClientMemeTourneeQueMartin.out
+Contenu de la base :
+Contenu de la table Client :
+=================================
+
+     IDCLI NOMCLI     PRENOMCLI      TELCLI MAILCLI            ADRCLI                                                                                 
+---------- ---------- ---------- ---------- ------------------ ------------                                                                           
+         2 DUPONT     Jean       ########## dupont@example.org La Rochelle                                                                            
+         3 VANILLE    Charles    ########## vanille@example.or La Rochelle                                                                            
+                                            g                                                                                                         
+                                                                                                                                                      
+         1 MARTIN     Jean       ########## martin@example.org La Rochelle                                                                            
+         4 LALLIC     Tituan     ########## lallic@example.org La Rochelle                                                                            
+         5 CAVIN      Pauline    ########## cavin@example.org  La Rochelle                                                                            
+         6 VOTIN      Elodie     ########## votin@example.org  La Rochelle                                                                            
+
+6 lignes sélectionnées.
+
+Contenu de la table Commande:
+=================================
+
+     IDCOM      IDCLI DATECOM    DATERECEPP                                                                                                           
+---------- ---------- ---------- ----------                                                                                                           
+         2          2 01/10/2013 25/10/2013                                                                                                           
+         3          3 05/10/2013 20/11/2013                                                                                                           
+         1          1 01/10/2013 20/10/2013                                                                                                           
+         4          4 01/10/2013 20/11/2013                                                                                                           
+         5          5 01/10/2013 25/10/2013                                                                                                           
+         6          6 05/10/2013 25/10/2013                                                                                                           
+
+6 lignes sélectionnées.
+
+Contenu de la table Ligne_Commande:
+=================================
+
+aucune ligne sélectionnée
+
+Contenu de la table Produit:
+=================================
+
+aucune ligne sélectionnée
+
+Contenu de la table Livraison:
+=================================
+
+     IDLIV      IDCOM DATELIV                                                                                                                         
+---------- ---------- ----------                                                                                                                      
+         1          2 25/11/2013                                                                                                                      
+         1          3 25/11/2013                                                                                                                      
+         1          1 25/11/2013                                                                                                                      
+         1          4 26/11/2013                                                                                                                      
+         2          5 25/11/2013                                                                                                                      
+         2          6 26/11/2013                                                                                                                      
+
+6 lignes sélectionnées.
+
+Contenu de la table Livreur:
+=================================
+
+     IDLIV NOMLIV                                                                                                                                     
+---------- ----------                                                                                                                                 
+         1 BERTRAND                                                                                                                                   
+         2 MAURICE                                                                                                                                    
+
+'Resultat de la requete'
+SQL> @clientMemeTourneeQueMartin.sql
+SQL> -- ============================================================================
+SQL> -- Fichier 	 : clientMemeTourneeQueMartin.sql
+SQL> -- Auteur		 : C. Faucher
+SQL> -- Date		 : Novembre 2014
+SQL> -- Base			     : Surgeles
+SQL> -- Role		 : Quels sont les clients livrés lors de la même tournée qui a permis de livrer la commande passée le 01/10/2013 par Jean MARTIN ?
+SQL> -- ============================================================================
+SQL> 
+SQL> 
+SQL> SELECT C2.IDCLI, C2.NOMCLI, C2.PRENOMCLI
+  2  FROM CLIENT C1, CLIENT C2, COMMANDE D1,COMMANDE D2, LIVRAISON L1, LIVRAISON L2
+  3  WHERE C1.NOMCLI = 'MARTIN'
+  4  AND C1.PRENOMCLI = 'JEAN'
+  5  AND C2.NOMCLI != 'MARTIN'
+  6  AND D1.IDCLI = C1.IDCLI
+  7  AND D1.DATECOM = '01/10/2013'
+  8  AND D2.IDCOM = L2.IDCOM
+  9  AND L1.IDCOM = D1.IDCOM
+ 10  AND L1.DATELIV = L2.DATELIV
+ 11  AND L1.IDLIV = L2.IDLIV
+ 12  AND D2.IDCLI = C2.IDCLI;
+
+aucune ligne sélectionnée
+
+SQL> SET echo OFF

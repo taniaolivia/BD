@@ -1,0 +1,83 @@
+Création de la table LIVREUR :
+==============================
+
+Table créée.
+
+SQL> 	 DESC LIVREUR
+ Nom                                                                                 NULL ?   Type
+ ----------------------------------------------------------------------------------- -------- --------------------------------------------------------
+ IDLIV                                                                               NOT NULL NUMBER(4)
+ NOMLIV                                                                              NOT NULL VARCHAR2(50)
+
+SQL> 	 set echo off
+Création de la table CLIENT :
+==============================
+
+Table créée.
+
+SQL> 	 DESC CLIENT
+ Nom                                                                                 NULL ?   Type
+ ----------------------------------------------------------------------------------- -------- --------------------------------------------------------
+ IDCLI                                                                               NOT NULL NUMBER(4)
+ NOMCLI                                                                              NOT NULL VARCHAR2(50)
+ PRENOMCLI                                                                           NOT NULL VARCHAR2(50)
+ TELCLI                                                                              NOT NULL NUMBER(10)
+ MAILCLI                                                                                      VARCHAR2(255)
+ ADRCLI                                                                              NOT NULL VARCHAR2(255)
+
+SQL> 	 set echo off
+Création de la table COMMANDE :
+==============================
+
+Table créée.
+
+SQL> 	 DESC COMMANDE
+ Nom                                                                                 NULL ?   Type
+ ----------------------------------------------------------------------------------- -------- --------------------------------------------------------
+ IDCOM                                                                               NOT NULL NUMBER(4)
+ IDCLI                                                                               NOT NULL NUMBER(4)
+ DATECOM                                                                             NOT NULL DATE
+ DATERECEPPREVI                                                                      NOT NULL DATE
+
+SQL> 	 set echo off
+Création de la table LIGNE_COMMANDE :
+==============================
+
+Table créée.
+
+SQL> 	 DESC LIGNE_COMMANDE
+ Nom                                                                                 NULL ?   Type
+ ----------------------------------------------------------------------------------- -------- --------------------------------------------------------
+ IDLIGCOM                                                                            NOT NULL NUMBER(4)
+ IDCOM                                                                               NOT NULL NUMBER(4)
+ IDPRO                                                                               NOT NULL NUMBER(4)
+ QTECOM                                                                              NOT NULL NUMBER(4)
+ PRIXUNIT                                                                            NOT NULL NUMBER(5,2)
+
+SQL> 	 set echo off
+Création de la table PRODUIT:
+==============================
+
+Table créée.
+
+SQL> 	 DESC PRODUIT
+ Nom                                                                                 NULL ?   Type
+ ----------------------------------------------------------------------------------- -------- --------------------------------------------------------
+ IDPRO                                                                               NOT NULL NUMBER(4)
+ NOMPRO                                                                              NOT NULL VARCHAR2(50)
+ TYPEPRO                                                                             NOT NULL CHAR(7)
+
+SQL> 	 set echo off
+Création de la table LIVRAISON :
+==============================
+
+Table créée.
+
+SQL> 	 DESC LIVRAISON
+ Nom                                                                                 NULL ?   Type
+ ----------------------------------------------------------------------------------- -------- --------------------------------------------------------
+ IDLIV                                                                               NOT NULL NUMBER(4)
+ IDCOM                                                                               NOT NULL NUMBER(4)
+ DATELIV                                                                             NOT NULL DATE
+
+SQL> 	 set echo off

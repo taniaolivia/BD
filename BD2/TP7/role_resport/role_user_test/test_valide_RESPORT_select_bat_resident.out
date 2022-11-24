@@ -1,0 +1,152 @@
+SQL> -------------------------------------------------------------------------------
+SQL> -- Etat de la base avant
+SQL> -------------------------------------------------------------------------------
+SQL> set echo off;
+Contenu de la table PORT :
+
+CODPORT         VILLE            CODPOSTAL                                                                                                            
+--------------- --------------- ----------                                                                                                            
+LR              LA ROCHELLE          17000                                                                                                            
+
+Contenu de la table MODELE :
+
+    ID_MOD CODMOD          CONSTRUCT            LONGR       LARG     TIRANT                                                                           
+---------- --------------- --------------- ---------- ---------- ----------                                                                           
+         1 FFFFF           Jontare              14,33      16,43       9,77                                                                           
+
+Contenu de la table EMPLACEMENT_LIBRE :
+
+   ID_EMPL DEB_LIBRE        FIN_LIBRE         TYPE_EMPL                                                                                               
+---------- ---------------- ---------------- ----------                                                                                               
+         1 11/12/2018       31/12/2018                1                                                                                               
+         2 11/01/2019       24/01/2019                2                                                                                               
+         3 11/01/2019       24/01/2019                3                                                                                               
+
+Contenu de la table BATEAU_PASSAGE :
+
+aucune ligne sélectionnée
+
+Contenu de la table BATEAU_RESIDENT :
+
+CODPORT         NOMBAT              ID_MOD   EMPL_AFF    ID_PROP                                                                                      
+--------------- --------------- ---------- ---------- ----------                                                                                      
+LR              MOMO                     1          1         14                                                                                      
+LR              LANO                     1          2         14                                                                                      
+
+Contenu de la table SORTIE :
+
+CODPORT         NOMBAT          DATSORTRELLE       DATRETRELLE        EFF_PRV                                                                         
+--------------- --------------- ------------------ ------------------ ---------                                                                       
+LR              MOMO            10/01/2019         20/01/2019         PRV                                                                             
+LR              LANO            14/01/2019         25/01/2019         PRV                                                                             
+
+SQL> 
+SQL> -------------------------------------------------------------------------------
+SQL> --  Tester SELECT d'un nuplet du BATEAU_RESIDENT
+SQL> -------------------------------------------------------------------------------
+SQL> -- Contenu avant SELECT
+SQL> select *
+  2  from  TOLIVIA.BATEAU_RESIDENT;
+
+ ID_BATRES CODPORT         NOMBAT              ID_MOD   EMPL_AFF    ID_PROP                                                                           
+---------- --------------- --------------- ---------- ---------- ----------                                                                           
+        10 LR              MOMO                     1          1         14                                                                           
+        11 LR              LANO                     1          2         14                                                                           
+
+SQL> 
+SQL> -- SELECT d'un nuplet du BATEAU_RESIDENT
+SQL> SELECT *
+  2  FROM TOLIVIA.BATEAU_RESIDENT
+  3  WHERE NOMBAT='LANO';
+
+ ID_BATRES CODPORT         NOMBAT              ID_MOD   EMPL_AFF    ID_PROP                                                                           
+---------- --------------- --------------- ---------- ---------- ----------                                                                           
+        11 LR              LANO                     1          2         14                                                                           
+
+SQL> 
+SQL> set echo off
+SQL> 
+SQL> 
+SQL> -------------------------------------------------------------------------------
+SQL> -- Etat de la base apres
+SQL> -------------------------------------------------------------------------------
+SQL> @afficheContenuBase_RESPORT.sql ;
+SQL> -- ============================================================================
+SQL> -- Fichier : afficheContenuBase_OPER.sql
+SQL> -- Auteur	: Tania Olivia
+SQL> -- Date	: 26 Mars 2020
+SQL> -- Role	: Affichage des nuplets de la base de donnees.
+SQL> -- 		      Prise en charge des privilèges accordés au rôle OPER
+SQL> -- ============================================================================
+SQL> 
+SQL> PROMPT Contenu de la table PORT :
+Contenu de la table PORT :
+SQL> SELECT   CODPORT, VILLE, CODPOSTAL
+  2  FROM     TOLIVIA.PORT;
+
+CODPORT         VILLE            CODPOSTAL                                                                                                            
+--------------- --------------- ----------                                                                                                            
+LR              LA ROCHELLE          17000                                                                                                            
+
+SQL> 
+SQL> PROMPT Contenu de la table MODELE :
+Contenu de la table MODELE :
+SQL> SELECT  ID_MOD, CODMOD, CONSTRUCT, LONGR, LARG,TIRANT
+  2  FROM    TOLIVIA.MODELE;
+
+    ID_MOD CODMOD          CONSTRUCT            LONGR       LARG     TIRANT                                                                           
+---------- --------------- --------------- ---------- ---------- ----------                                                                           
+         1 FFFFF           Jontare              14,33      16,43       9,77                                                                           
+
+SQL> 
+SQL> PROMPT Contenu de la table EMPLACEMENT_LIBRE :
+Contenu de la table EMPLACEMENT_LIBRE :
+SQL> SELECT  ID_EMPL, DEB_LIBRE, FIN_LIBRE, TYPE_EMPL
+  2  FROM    TOLIVIA.EMPLACEMENT_LIBRE;
+
+   ID_EMPL DEB_LIBRE        FIN_LIBRE         TYPE_EMPL                                                                                               
+---------- ---------------- ---------------- ----------                                                                                               
+         1 11/12/2018       31/12/2018                1                                                                                               
+         2 11/01/2019       24/01/2019                2                                                                                               
+         3 11/01/2019       24/01/2019                3                                                                                               
+
+SQL> 
+SQL> PROMPT Contenu de la table BATEAU_PASSAGE :
+Contenu de la table BATEAU_PASSAGE :
+SQL> SELECT  CODPORT, NOMBAT, ARV, DEPART, ID_MOD, NOMPROP,
+  2  		     TEL_PORTABLE, ADRESSE, EMPL_AFF
+  3  FROM    TOLIVIA.BATEAU_PASSAGE;
+
+aucune ligne sélectionnée
+
+SQL> 
+SQL> PROMPT Contenu de la table BATEAU_RESIDENT :
+Contenu de la table BATEAU_RESIDENT :
+SQL> SELECT    CODPORT, NOMBAT, ID_MOD, EMPL_AFF, ID_PROP
+  2  FROM     TOLIVIA.BATEAU_RESIDENT;
+
+CODPORT         NOMBAT              ID_MOD   EMPL_AFF    ID_PROP                                                                                      
+--------------- --------------- ---------- ---------- ----------                                                                                      
+LR              MOMO                     1          1         14                                                                                      
+LR              LANO                     1          2         14                                                                                      
+
+SQL> 
+SQL> PROMPT Contenu de la table SORTIE :
+Contenu de la table SORTIE :
+SQL> SELECT   CODPORT, NOMBAT, DATSORTRELLE, DATRETRELLE, EFF_PRV
+  2  FROM     TOLIVIA.SORTIE;
+
+CODPORT         NOMBAT          DATSORTRELLE       DATRETRELLE        EFF_PRV                                                                         
+--------------- --------------- ------------------ ------------------ ---------                                                                       
+LR              MOMO            10/01/2019         20/01/2019         PRV                                                                             
+LR              LANO            14/01/2019         25/01/2019         PRV                                                                             
+
+SQL> 
+SQL> -------------------------------------------------------------------------------
+SQL> -- Fin du programme de test
+SQL> -------------------------------------------------------------------------------
+SQL> commit;
+
+Validation effectuée.
+
+SQL> set echo off;

@@ -1,0 +1,90 @@
+fichier resultat du test : testComMemeTourneeQueCom1.out
+Contenu de la base :
+Contenu de la table Client :
+=================================
+
+     IDCLI NOMCLI     PRENOMCLI      TELCLI MAILCLI            ADRCLI                                                                                 
+---------- ---------- ---------- ---------- ------------------ ------------                                                                           
+         2 DUPONT     Jean       ########## dupont@example.org La Rochelle                                                                            
+         3 VANILLE    Charles    ########## vanille@example.or La Rochelle                                                                            
+                                            g                                                                                                         
+                                                                                                                                                      
+         1 MARTIN     Jean       ########## martin@example.org La Rochelle                                                                            
+         4 LALLIC     Tituan     ########## lallic@example.org La Rochelle                                                                            
+         5 CAVIN      Pauline    ########## cavin@example.org  La Rochelle                                                                            
+         6 VOTIN      Elodie     ########## votin@example.org  La Rochelle                                                                            
+
+6 lignes sélectionnées.
+
+Contenu de la table Commande:
+=================================
+
+     IDCOM      IDCLI DATECOM    DATERECEPP                                                                                                           
+---------- ---------- ---------- ----------                                                                                                           
+         2          2 01/10/2013 25/10/2013                                                                                                           
+         3          3 05/10/2013 20/11/2013                                                                                                           
+         1          1 01/10/2013 20/10/2013                                                                                                           
+         4          4 01/10/2013 20/11/2013                                                                                                           
+         5          5 01/10/2013 25/10/2013                                                                                                           
+         6          6 05/10/2013 25/10/2013                                                                                                           
+
+6 lignes sélectionnées.
+
+Contenu de la table Ligne_Commande:
+=================================
+
+aucune ligne sélectionnée
+
+Contenu de la table Produit:
+=================================
+
+aucune ligne sélectionnée
+
+Contenu de la table Livraison:
+=================================
+
+     IDLIV      IDCOM DATELIV                                                                                                                         
+---------- ---------- ----------                                                                                                                      
+         1          2 25/11/2013                                                                                                                      
+         1          3 25/11/2013                                                                                                                      
+         1          1 25/11/2013                                                                                                                      
+         1          4 26/11/2013                                                                                                                      
+         2          5 25/11/2013                                                                                                                      
+         2          6 26/11/2013                                                                                                                      
+
+6 lignes sélectionnées.
+
+Contenu de la table Livreur:
+=================================
+
+     IDLIV NOMLIV                                                                                                                                     
+---------- ----------                                                                                                                                 
+         1 BERTRAND                                                                                                                                   
+         2 MAURICE                                                                                                                                    
+
+'Resultat de la requete'
+SQL> @comMemeTourneeQueCom1.sql
+SQL> -- ============================================================================
+SQL> -- Fichier 	 : clientMemeTourneeQueCom1.sql
+SQL> -- Auteur		 : C. Faucher
+SQL> -- Date		 : Novembre 2014
+SQL> -- Base			     : Surgeles
+SQL> -- Role		 : Quelles sont les autres commandes livrées lors de la même tournée qui a permis de livrer la commande de code 1 ?
+SQL> -- ============================================================================
+SQL> 
+SQL> SELECT D.IDCLI, D.IDCOM
+  2  FROM COMMANDE D, LIVRAISON L, LIVRAISON I
+  3  WHERE I.IDCOM = 1
+  4  AND D.IDCOM = L.IDCOM
+  5  AND L.DATELIV = I.DATELIV;
+
+     IDCLI      IDCOM                                                                                                                                 
+---------- ----------                                                                                                                                 
+         2          2                                                                                                                                 
+         3          3                                                                                                                                 
+         1          1                                                                                                                                 
+         5          5                                                                                                                                 
+
+SQL> AND L.IDLIV = I.IDLIV;
+SP2-0734: commande inconnue au début de "AND L.IDLI..." - le reste de la ligne est ignoré.
+SQL> SET echo OFF

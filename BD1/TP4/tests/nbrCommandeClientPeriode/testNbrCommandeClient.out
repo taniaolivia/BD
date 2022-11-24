@@ -1,0 +1,64 @@
+fichier resultat du test : testNbrCommandeClientPeriode.out
+Contenu de la base :
+Contenu de la table Client :
+=================================
+
+     IDCLI NOMCLI     PRENOMCLI      TELCLI MAILCLI            ADRCLI                                                                                 
+---------- ---------- ---------- ---------- ------------------ ------------                                                                           
+         1 MARTIN     Jean       ########## martin@example.org La Rochelle                                                                            
+         2 DUPONT     Jean       ########## dupont@example.org La Rochelle                                                                            
+         3 CAVIN      Pauline    ########## cavin@example.org  La Rochelle                                                                            
+
+Contenu de la table Commande:
+=================================
+
+     IDCOM      IDCLI DATECOM    DATERECEPP                                                                                                           
+---------- ---------- ---------- ----------                                                                                                           
+         1          1 01/05/2013 20/06/2013                                                                                                           
+         3          1 01/10/2013 20/12/2013                                                                                                           
+         2          2 01/09/2013 20/12/2013                                                                                                           
+         4          3 01/11/2013 20/12/2013                                                                                                           
+
+Contenu de la table Ligne_Commande:
+=================================
+
+no rows selected
+
+Contenu de la table Produit:
+=================================
+
+no rows selected
+
+Contenu de la table Livraison:
+=================================
+
+no rows selected
+
+Contenu de la table Livreur:
+=================================
+
+no rows selected
+
+'Resultat de la requete:'
+SQL> @ nbrCommandeClientPeriode.sql ;
+SQL> -- ============================================================================
+SQL> -- Fichier  : nbrCommandeClientPeriode.sql
+SQL> -- Auteur	 : OLIVIA TANIA
+SQL> -- Date	 : 15 Novembre 2019
+SQL> -- Projet	 : surgeles
+SQL> -- Role	 : Quel est le nombre de commandes passées pour chaque client ?
+SQL> -- ============================================================================
+SQL> 
+SQL> SELECT C.IDCLI, C.NOMCLI, C.PRENOMCLI, COUNT(*) AS NbCOM
+  2  FROM CLIENT C, COMMANDE D
+  3  WHERE C.IDCLI = D.IDCLI
+  4  AND D.DATECOM BETWEEN TO_DATE('01/06/2013', 'DD/MM/YYYY')
+  5  AND TO_DATE('31/10/2013', 'DD/MM/YYYY')
+  6  GROUP BY C.IDCLI, C.NOMCLI, C.PRENOMCLI;
+
+     IDCLI NOMCLI     PRENOMCLI       NBCOM                                                                                                           
+---------- ---------- ---------- ----------                                                                                                           
+         2 DUPONT     Jean                1                                                                                                           
+         1 MARTIN     Jean                1                                                                                                           
+
+SQL> SET echo OFF

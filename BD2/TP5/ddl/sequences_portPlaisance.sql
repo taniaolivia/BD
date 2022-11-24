@@ -1,0 +1,39 @@
+--==========================
+--fichier           : sequences_portPlaisance.sql
+--auteur(s)         : Tania OLIVIA
+--date              : 11/03/2020
+--role              : La création des séquences du port de plaisance
+--resultat dans     : //
+--==========================
+
+DROP SEQUENCE seq_SORTIE;
+CREATE SEQUENCE seq_SORTIE
+INCREMENT BY 1
+START WITH 1
+MINVALUE 0
+NOCYCLE
+CACHE 25;
+
+DROP SEQUENCE seq_BATEAU_RESIDENT;
+CREATE SEQUENCE seq_BATEAU_RESIDENT
+INCREMENT BY 1
+START WITH 1
+MINVALUE 0
+NOCYCLE
+CACHE 25;
+
+DROP SEQUENCE seq_BATEAU_PASSAGE;
+CREATE SEQUENCE seq_BATEAU_PASSAGE
+INCREMENT BY 1
+START WITH 1
+MINVALUE 0
+NOCYCLE
+CACHE 25;
+
+DROP SEQUENCE seq_PROPRIETAIRE;
+CREATE SEQUENCE seq_PROPRIETAIRE
+INCREMENT BY 1
+START WITH 1
+MINVALUE 0
+NOCYCLE
+CACHE 25;

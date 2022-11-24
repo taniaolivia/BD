@@ -1,0 +1,26 @@
+fichier resultat du test : testRelationContrat_DINV_ck_DEBCONTRAT.out
+SQL> -- ============================================================================
+SQL> -- Contenu de la table RelationContrat avant INSERT
+SQL> -- ============================================================================
+SQL> set echo off
+
+no rows selected
+
+SQL> -- ============================================================================
+SQL> -- Cas 1:
+SQL> -- Le date de debut contrat est inférieur que la fin du contrat
+SQL> -- ============================================================================
+SQL> set echo off
+INSERT INTO CONTRAT(NUMCONTRAT, DATESIGNATURE,DEBCONTRAT, FINCONTRAT,TYPECONTRAT,CONTRACTANT,EMPLACEMENT)
+*
+ERROR at line 1:
+ORA-02290: check constraint (TOLIVIA.CHK_DEBCONTRAT) violated 
+
+
+SQL> -- ============================================================================
+SQL> -- Contenu de la table RelationContrat apres INSERT
+SQL> -- ============================================================================
+SQL> set echo off
+
+no rows selected
+

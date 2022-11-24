@@ -1,0 +1,114 @@
+
+Table supprimée.
+
+Création de la table CLIENT :
+==============================
+
+Table créée.
+
+SQL> 	 DESC CLIENT
+ Nom                                                                                 NULL ?   Type
+ ----------------------------------------------------------------------------------- -------- --------------------------------------------------------
+ NUMCLIENT                                                                           NOT NULL CHAR(5)
+ NOMCLIENT                                                                           NOT NULL VARCHAR2(20)
+ ADRESSE                                                                             NOT NULL VARCHAR2(40)
+ TEL                                                                                 NOT NULL VARCHAR2(10)
+
+SQL> 	 set echo off
+
+Table supprimée.
+
+Création de la table EMPLOYE:
+==============================
+
+Table créée.
+
+SQL> 	 DESC EMPLOYE
+ Nom                                                                                 NULL ?   Type
+ ----------------------------------------------------------------------------------- -------- --------------------------------------------------------
+ NUMEMP                                                                              NOT NULL CHAR(5)
+ NOMEMP                                                                              NOT NULL VARCHAR2(20)
+
+SQL> 	 set echo off
+
+Table supprimée.
+
+Création de la table DROIT_SIGNATURE :
+==============================
+
+Table créée.
+
+SQL> 	 DESC DROIT_SIGNATURE
+ Nom                                                                                 NULL ?   Type
+ ----------------------------------------------------------------------------------- -------- --------------------------------------------------------
+ NUMCLIENT                                                                           NOT NULL CHAR(5)
+ NUMCOMPTE_COURANT                                                                   NOT NULL CHAR(5)
+ EMPLOYE                                                                             NOT NULL CHAR(5)
+ DROIT                                                                               NOT NULL VARCHAR2(40)
+
+SQL> 	 set echo off
+
+Table supprimée.
+
+Création de la table COMPTE:
+==============================
+
+Table créée.
+
+SQL> 	 DESC COMPTE
+ Nom                                                                                 NULL ?   Type
+ ----------------------------------------------------------------------------------- -------- --------------------------------------------------------
+ NUMCOMPTE                                                                           NOT NULL CHAR(5)
+ SOLDE                                                                               NOT NULL NUMBER(10,2)
+ DATE_OUVERTURE                                                                      NOT NULL DATE
+ PROPRIETAIRE                                                                        NOT NULL CHAR(5)
+
+SQL> 	 set echo off
+
+Table supprimée.
+
+Création de la table COMPTE_COURANT:
+==============================
+
+Table créée.
+
+SQL> 	 DESC COMPTE_COURANT
+ Nom                                                                                 NULL ?   Type
+ ----------------------------------------------------------------------------------- -------- --------------------------------------------------------
+ NUMCOMPTE_COURANT                                                                   NOT NULL CHAR(5)
+ NB_OP_CB                                                                            NOT NULL NUMBER(10)
+
+SQL> 	 set echo off
+
+Table supprimée.
+
+Création de la table COMPTE_EPARGNE:
+==============================
+
+Table créée.
+
+SQL> 	 DESC COMPTE_EPARGNE
+ Nom                                                                                 NULL ?   Type
+ ----------------------------------------------------------------------------------- -------- --------------------------------------------------------
+ NUMCOMPTE_EPARGNE                                                                   NOT NULL CHAR(5)
+ TX_INTERNET                                                                         NOT NULL NUMBER(3,2)
+
+SQL> 	 set echo off
+
+Table supprimée.
+
+Création de la table MOUVEMENT:
+==============================
+
+Table créée.
+
+SQL> 	 DESC MOUVEMENT
+ Nom                                                                                 NULL ?   Type
+ ----------------------------------------------------------------------------------- -------- --------------------------------------------------------
+ ID_MOUVEMENT                                                                        NOT NULL CHAR(5)
+ MONTANT                                                                             NOT NULL NUMBER(3,2)
+ NUMCLIENT                                                                           NOT NULL CHAR(5)
+ NUMCOMPTE_COURANT                                                                   NOT NULL CHAR(5)
+ DATEOP                                                                              NOT NULL DATE
+
+SQL> 	 set echo off

@@ -1,0 +1,18 @@
+-- ____________________________________________________________________________
+-- Fichier          : acheteursUniques.sql
+-- Auteur           : C. Faucher
+-- Date             : Janvier 2019
+-- Base				: Billetterie
+-- Role             : Q6. Un client peut acheter plusieurs billets pour un même événement.
+--					  Quels sont les événements qui ont des acheteurs uniques
+--                    (tous les acheteurs d'un même événement ont acheté un seul billet pour celui-ci) ?
+-- ____________________________________________________________________________
+-- Hypothèses si nécessaire :
+-- ____________________________________________________________________________
+-- Résultat attendu :
+--     IDEVT TITREEVT        DATEEVT                                              
+------------ --------------- ----------                                           
+--         1 Evt A           10/09/2013                                           
+--         2 Evt B           10/10/2013                           
+--____________________________________________________________________________
+-- Requête SQL :

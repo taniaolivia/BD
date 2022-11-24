@@ -1,0 +1,24 @@
+
+Type abandonné.
+
+
+Type créé.
+
+
+Type abandonné.
+
+
+Type créé.
+
+
+Fonction créée.
+
+ERROR:
+ORA-06502: PL/SQL : erreur numérique ou erreur sur une valeur: tampon de chaîne
+de caractères trop petit
+ORA-06512: à "TOLIVIA.DESCTABLES", ligne 8 
+
+
+
+aucune ligne sélectionnée
+

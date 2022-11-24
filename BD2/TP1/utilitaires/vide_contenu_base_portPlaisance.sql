@@ -1,0 +1,20 @@
+--==========================
+--fichier           : vider_contenu_base_portPlaisance.sql
+--base              : port plaisance
+--auteur(s)         : Tania OLIVIA
+--date              : 01/02/2020
+--role              : Supprimer des nuplets en suivant un ordre respectant les dépendances de références
+--projet            : port plaisance
+--resultat dans     :  // à renseigner si nécessaire
+--==========================
+
+
+DELETE FROM SORTIE;
+DELETE FROM BATEAU_RESIDENT;
+DELETE FROM BATEAU_PASSAGE;
+DELETE FROM EMPLACEMENT_LIBRE;
+DELETE FROM PROPRIETAIRE;
+DELETE FROM PORT;
+DELETE FROM MODELE;
+DELETE FROM EMPLACEMENT;
+DELETE FROM TYPE_EMPLACEMENT;
